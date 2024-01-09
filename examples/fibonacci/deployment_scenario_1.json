@@ -8,7 +8,7 @@
 	"no_op_handler_aws": "lambda_function.lambda_handler",
 	"no_op_handler_gcp":  "entry_handler",
 	"gcp_project_id": "",
-	"aws_deployment_role" : "arn",
+	"aws_deployment_role" : "arn:aws:sts::650940819061:assumed-role/testops-temp/fibonacci",
 	"pyStorage_arn": "arn",
 	"aws_runtime": "python3.9",
 	"gcp_runtime": "python39",
@@ -16,28 +16,11 @@
 	"repetitions_of_experiment": 1,
     "repetitions_per_function": 2,
     "concurrency": 1,
-	"payload": [{"input": 30}],
+	"payload": [{"input": 10}],
 	"AWS_regions": {
-		"us-west-2": {
+		"us-east-1": {
 			"memory_configurations":[
-			128,
-			256
-		]},
-		"us-east-1":{
-			"memory_configurations" :[
-			128,
-			256
+			128
 		]}
-	},
-	"GCP_regions": {
-		"us-west1": {
-			"memory_configurations": [
-				128,
-				256
-			]},
-		"us-east4": {
-			"memory_configurations":
-			[128, 256]
-		}
 	}
 }

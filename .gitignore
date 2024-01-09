@@ -1,4 +1,5 @@
-
+venv/
+terraform/.terraform/providers
 .idea/
 
 __pycache__/

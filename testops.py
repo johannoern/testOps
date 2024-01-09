@@ -10,6 +10,7 @@ from keep_mode import KeepMode
 import deployer_v2
 import invoker_v2
 import analyzer_v2
+import deployerBaas
 import pandas as pd
 import logging
 import os
@@ -92,6 +93,7 @@ deployment_dict = None
 deploy = False
 invoke = False
 analyze = False
+baas = False
 plot = True
 deploy_noop = True
 keep_mode = KeepMode.KEEP_ALL
@@ -103,6 +105,7 @@ parser.add_argument('-d', '--deploy', action='store_true', help='Tells testOps t
 parser.add_argument('-i', '--invoke', action='store_true', help='Tells testOps to invoke and time functions')
 parser.add_argument('-a', '--analyse', action='store_true', help='Tells testOps to analyse data either from the output of the -invoke option or the inputjson is no -invoke is present')
 parser.add_argument('-keep', default='all', choices=['all', 'none', 'pareto'], help='Tells testops what to do with the deployed functions, the pareto option requires -a')
+parser.add_argument('-d2', '--baas', action='store_true', help='tells testOps to deploy using terraform')
 
 args = parser.parse_args()
 if args.deploy:
@@ -111,6 +114,9 @@ if args.invoke:
     invoke = True
 if args.analyse:
     analyze = True
+if args.baas:
+    baas = True
+
 json_candidate = args.filename
 if args.keep == 'none':
     keep_mode = KeepMode.KEEP_NONE
@@ -122,8 +128,8 @@ if exists(json_candidate):
 else:
     raise FileNotFoundError('The file %s was not found!' % json_candidate)
 
-if not deploy and not invoke and not analyze:
-    print('You must pick at least one of the functions: deploy, test, analyse.')
+if not deploy and not invoke and not analyze and not baas:
+    print('You must pick at least one of the functions: deploy/deploy2, test, analyse.')
     print('Aborting process! Have a nice day!')
     exit()
 
@@ -214,6 +220,12 @@ if analyze:
 
 if keep_mode == KeepMode.KEEP_NONE:
     deployer_v2.delete_function(deployment_dict=deployment_dict)
+
+if baas:
+    #TODO may be find some sort of path variable instead of using strings
+    project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
+    print(project_path)
+    deployerBaas.build(project_path)
 
 
 

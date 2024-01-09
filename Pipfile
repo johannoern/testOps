@@ -12,7 +12,6 @@ paretoset = "*"
 matplotlib = "*"
 numpy = "*"
 adjusttext = "*"
-numpy = "*"
 
 [dev-packages]
 

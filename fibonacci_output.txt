@@ -1,0 +1,18 @@
+Pareto Cost - ET
+   avg_ET  cost
+0      67  0.34 
+
+Pareto measurements ET
+{'provider': 'AWS', 'region': 'us-east-1', 'MB': 128, 'avg_RTT': 1066, 'avg_no_op_rtt': 998, 'avg_ET': 67, 'cost': 0.34, 'measurement_points': 2}
+
+
+Pareto Cost - RTT
+   avg_RTT  cost
+0     1066  0.34 
+
+Pareto measurements RTT
+{'provider': 'AWS', 'region': 'us-east-1', 'MB': 128, 'avg_RTT': 1066, 'avg_no_op_rtt': 998, 'avg_ET': 67, 'cost': 0.34, 'measurement_points': 2}
+
+
+Analyzer measurements
+{'provider': 'AWS', 'region': 'us-east-1', 'MB': 128, 'avg_RTT': 1066, 'avg_no_op_rtt': 998, 'avg_ET': 67, 'cost': 0.34, 'measurement_points': 2}
