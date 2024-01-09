@@ -224,8 +224,8 @@ if keep_mode == KeepMode.KEEP_NONE:
 if baas:
     #TODO may be find some sort of path variable instead of using strings
     project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
-    print(project_path)
     deployerBaas.build(project_path)
+    deployerBaas.terraform('apply')
 
 
 
