@@ -67,9 +67,9 @@ def terraform(command: str):
 #commands
 
 # write_tfvars({"region":"I changed the region"})
-# write_tfvars({"region":"us-east-1", "function_src": "Baas is great", "functions": [{"handler": "org.example.baas.AWSRequestHandler", "function_name": "handleRequest", "memory": 256, "timeout": 3}]})
+write_tfvars({"region":"us-east-1", "function_src": "C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl\\build\\libs\\testOpsGradleImpl-1.0-SNAPSHOT.jar", "functions": [{"handler": "org.example.baas.AWSRequestHandler", "function_name": "handleRequest", "memory": 256, "timeout": 3}]})
 
 # terraform('apply')
 # cd C:\Users\Johann\Documents\uibk\BachelorArbeit\testOpsGradleImpl && .\gradlew build
-project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
-build(project_path)
+# project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
+# build(project_path)
