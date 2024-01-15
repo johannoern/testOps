@@ -12,6 +12,8 @@ paretoset = "*"
 matplotlib = "*"
 numpy = "*"
 adjusttext = "*"
+toml = "*"
+gitpython = "*"
 
 [dev-packages]
 

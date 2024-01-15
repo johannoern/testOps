@@ -1,0 +1,10 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "name"
+resolve_s3 = true
+s3_prefix = "name"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "PowerValues=\"128,256,512\" visualizationURL=\"https://lambda-power-tuning.show/\" lambdaResource=\"*\" totalExecutionTimeout=\"300\" permissionsBoundary=\"\" payloadS3Bucket=\"\" payloadS3Key=\"*\" layerSdkName=\"\" logGroupRetentionInDays=\"7\" securityGroupIds=\"\" subnetIds=\"\""
+image_repositories = []

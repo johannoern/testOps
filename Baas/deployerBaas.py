@@ -13,9 +13,8 @@ def build(project_path):
     #TODO handle potential errors
     command = f"cd {project_path} && .\\gradlew build"
     print(command)
-    output = subprocess.run(command, shell=True, capture_output=True)
-    print(output.stdout.decode('utf-8'))
-    print(output.stderr.decode('utf-8'))
+    output = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+    print(output.stdout)
 
 #create zip - not needed since the fat jar can be deployed 
 #values for aws:
@@ -29,15 +28,27 @@ def build(project_path):
 #TODO make it work not only for updates but also if file does not exist yet
 #TODO extend for gcp
 def write_tfvars(values: dict):
+    #reading existing file
     tfvars_path = f"{terraform_dir}\\terraform.tfvars.json"
-    #try reading existing vars
     with open(tfvars_path, "r") as tfvars_file:
             tfvars = json.load(tfvars_file)
 
-    #TODO should not be all values, when more providers are added
-    amazon_values = values
+    #TODO check if this line is needed
+    functions = []
 
-    tfvars["amazon"].update(amazon_values)
+    #TODO fallback to default region if no region is found
+    region = list(values["AWS_regions"].keys())[0]
+    #TODO throw error if no src is found
+    aws_function_src = values["aws_code"]
+
+    #needed if you want to use the old analyser
+    # for mem_config in values["AWS_regions"][region]["memory_configurations"]:
+    #     functions.append({"handler":values["aws_handler"], "function_name":f"{values['function_name']}_{mem_config}MB", "memory":mem_config, "timeout": 3})
+
+    functions.append({"handler":values["aws_handler"], "function_name":values['function_name'], "memory":256, "timeout": 3})
+    
+
+    tfvars["amazon"].update({"region":region, "function_src":aws_function_src, "functions":functions})
     
     with open(tfvars_path, "w") as tfvars_file:
         json.dump(tfvars, tfvars_file, indent=4)
@@ -60,15 +71,12 @@ def terraform(command: str):
          output:tuple = terraform.apply(capture_output=True, skip_plan=True)
     print(output[1])
     print(output[2])
-
-    # tf.apply(skip_plan=True) 
-
 ###############################
 #commands
 
 # write_tfvars({"region":"I changed the region"})
-write_tfvars({"region":"us-east-1", "function_src": "C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl\\build\\libs\\testOpsGradleImpl-1.0-SNAPSHOT.jar", "functions": [{"handler": "org.example.baas.AWSRequestHandler", "function_name": "handleRequest", "memory": 256, "timeout": 3}]})
-
+# write_tfvars({"region":"us-east-1", "function_src": "C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl\\build\\libs\\testOpsGradleImpl-1.0-SNAPSHOT.jar", "functions": [{"handler": "org.example.baas.AWSRequestHandler", "function_name": "handleRequest", "memory": 256, "timeout": 3}]})
+# write_tfvars({"functions": [{"handler": "org.example.baas.AWSRequestHandler", "function_name": "handleRequest_128MB", "memory": 128, "timeout": 3}]})
 # terraform('apply')
 # cd C:\Users\Johann\Documents\uibk\BachelorArbeit\testOpsGradleImpl && .\gradlew build
 # project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'

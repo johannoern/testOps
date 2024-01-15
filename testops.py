@@ -10,7 +10,8 @@ from keep_mode import KeepMode
 import deployer_v2
 import invoker_v2
 import analyzer_v2
-import deployerBaas
+from Baas import deployerBaas
+from Baas import analyserBaas
 import pandas as pd
 import logging
 import os
@@ -222,10 +223,10 @@ if keep_mode == KeepMode.KEEP_NONE:
     deployer_v2.delete_function(deployment_dict=deployment_dict)
 
 if baas:
+    print("------------------------------------------------------------------------------")
     #TODO may be find some sort of path variable instead of using strings
-    project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
-    deployerBaas.build(project_path)
-    deployerBaas.terraform('apply')
+    # project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
+    analyserBaas.build_statemachine()
 
 
 

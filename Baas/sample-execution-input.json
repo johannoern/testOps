@@ -1,0 +1,8 @@
+{
+    "lambdaARN": "",
+    "powerValues": [128, 256, 512],
+    "num": 5,
+    "payload": {},
+    "parallelInvocation": true,
+    "strategy": "cost"
+}

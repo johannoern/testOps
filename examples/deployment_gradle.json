@@ -1,4 +1,5 @@
 {
+	"name":"all_I_do_is_win",
 	"function_name": "handleRequest",
 	"aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/testOpsGradleImpl/build/libs/testOpsGradleImpl-1.0-SNAPSHOT.jar",
 	"gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/testOpsGradleImpl/build/libs/testOpsGradleImpl-1.0-SNAPSHOT.jar",
@@ -9,7 +10,6 @@
 	"no_op_handler_gcp":  "entry_handler",
 	"gcp_project_id": "not_yet_inserted",
 	"aws_deployment_role" : "arn:aws:sts::650940819061:assumed-role/testops-temp/fibonacci",
-	"pyStorage_arn": "py_storage_cannot_be_used",
 	"aws_runtime": "java11",
 	"gcp_runtime": "gcp_not_implemented",
 	"file_type": "zip",
@@ -20,7 +20,7 @@
 	"AWS_regions": {
 		"us-east-1": {
 			"memory_configurations":[
-			128
+			128, 256
 		]}
 	}
 }
