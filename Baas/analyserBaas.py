@@ -1,9 +1,8 @@
 import json
 import toml
 import shutil
-import subprocess
+from Baas import helpers
 import os
-import sys
 from git import Repo
 
 #this file helps finding the optimal memory for your function using:
@@ -11,18 +10,12 @@ from git import Repo
 #prerequisites
     #1. sam cli - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
     #2. docker - https://docs.docker.com/engine/install/
-#NOTE I am not quite sure about the git link
     #3. git bash - https://www.git-scm.com/downloads
 
-#TODO get rid of the shell=True and make it work independent of the platform
+#NOTE get rid of the shell=True and make it work independent of the platform
 
 def get_power_tuning_path():
     return os.path.join('.', 'Baas', 'aws-lambda-power-tuning')
-
-#NOTE maybe only call and have check=True
-#TODO shell True probably does not work across platforms
-def execute(command:str):
-    subprocess.check_call(command, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
 
 #worked 15.01. 1:10
 def powertuner_setup():
@@ -30,14 +23,11 @@ def powertuner_setup():
     if not os.path.isdir(get_power_tuning_path()):
         Repo.clone_from(powertuner_url, get_power_tuning_path())
     #build sam app
-    #TODO check the linkage of the command - probably does not work in all editors
+    #NOTE check the linkage of the command - probably does not work in all editors
     #also would be great if output was continous to know that progress is being made
     command = f"cd {get_power_tuning_path()} && sam build"
 
-
-    output = subprocess.run(command, shell=True, capture_output=True, text=True)
-    print("this is the stdout: " + output.stdout)
-    print("this is the stderr: " + output.stderr)
+    helpers.execute(command)
 
 #worked 15.01. 01:26
 #creates default config file overwriting defaults if param is given in configs
@@ -73,36 +63,45 @@ def create_config_file(configs:dict):
     with open(toml_path, "w") as toml_file:
         toml.dump(samconfig, toml_file)
 
+#worked 15.01. 19:04
 #build state machine
 def build_statemachine():
     #go to the aws_lambda_power_tuning folder
     command = f"cd {get_power_tuning_path()} && sam deploy"
-    output = subprocess.run(command, shell=True, capture_output=True, text=True)
-    print("this is the stdout: " + output.stdout)
-    print("this is the stderr: " + output.stderr)
+    helpers.execute(command)
 
 #fill json for execution
     #strategy, memory configs to test, !!!lambda ARN!!! - might be known from the deploy
-#TODO check for name of json
+#worked 15.01. 19:18
 def fill_json(configs:dict):
-    #TODO should first search for json in the aws-power-tuner-folder
     #read sample json
-    sample_input_file = os.path.join('.', 'sample-execution-input.json')
+    sample_input_file = os.path.join(get_power_tuning_path(), 'scripts', 'sample-execution-input.json')
     with open(sample_input_file, "r") as input_file:
             input = json.load(input_file)
     #getting the relevant info from the configs
+    #memory config
     first_region = list(configs["AWS_regions"].keys())[0]
-    wanted_keys = [configs['AWS_regions'][first_region]['memory_configurations'], 'lambda_ARN', 'strategy'] # The keys you want
+    input.update({'powerValues':configs['AWS_regions'][first_region]['memory_configurations']})
+    
+    #updating rest #lambdaARN, strategy, payload, parallelInvocation
+    wanted_keys = ['lambdaARN', 'strategy'] # The keys you want
     relevant_keys = dict((k, configs[k]) for k in wanted_keys if k in configs)        
     
     #update it using the right values
     input.update(relevant_keys)
-    #write updated json back to the aws-power-tuner-folder
-    new_input_file = os.path.join(get_power_tuning_path(), 'execution_input.json')
 
-    with open(new_input_file, "w") as input_file:
+    with open(sample_input_file, "w") as input_file:
         json.dump(input, input_file, indent=4)
 
+
 #execute
-def execute_power_tuning():
-    pass
+def execute_power_tuning(configs:dict):
+    script_path = os.path.join(get_power_tuning_path(), 'scripts')
+    command = f"cd {script_path} && .\execute.sh {configs['name']} {configs['function_name']}"
+    helpers.execute(command)
+    output_file = os.path.join(get_power_tuning_path(), 'scripts', f'{configs["function_name"]}.json')
+    with open(output_file, "r") as output:
+            data = json.load(output)
+            print(json.dumps(data, indent=4))
+    return configs.update(data)
+    

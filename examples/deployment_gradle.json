@@ -1,5 +1,6 @@
 {
-	"name":"all_I_do_is_win",
+	"lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:handleRequest_128MB",
+	"name":"name",
 	"function_name": "handleRequest",
 	"aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/testOpsGradleImpl/build/libs/testOpsGradleImpl-1.0-SNAPSHOT.jar",
 	"gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/testOpsGradleImpl/build/libs/testOpsGradleImpl-1.0-SNAPSHOT.jar",

@@ -38,8 +38,8 @@ def validate_json(candidate: str) -> Dict:
 
     if dd.get('function_name', None) is None or  len(dd.get('function_name')) == 0:
         error_msg = 'Check function_name!'
-    if dd.get('no_op_code', None) is None:
-        error_msg = 'Check no_op_code'
+    # if dd.get('no_op_code', None) is None:
+    #     error_msg = 'Check no_op_code'
 
     contains_aws = dd.get('AWS_regions', 0) != 0
     contains_gcp = dd.get('GCP_regions', 0) != 0
@@ -62,14 +62,14 @@ def validate_json(candidate: str) -> Dict:
             error_msg = 'Check gcp_code'
         if dd.get('gcp_runtime', None) is None:
             error_msg = 'Check gcp_runtime'
-    if dd.get('repetitions_of_experiment', None) is None or not int_try_parse(dd.get('repetitions_of_experiment')):
-        error_msg = 'Check repetitions_of_experiment'
-    if dd.get('repetitions_per_function', None) is None or not int_try_parse(dd.get('repetitions_per_function')):
-        error_msg = 'Check repetitions_per_function'
-    if dd.get('concurrency', None) is None or not int_try_parse(dd.get('concurrency')):
-        error_msg = 'Check concurrency'
-    if dd.get('payload', None) is None or len(dd.get('payload')) == 0:
-        error_msg = 'Check payload'
+    # if dd.get('repetitions_of_experiment', None) is None or not int_try_parse(dd.get('repetitions_of_experiment')):
+    #     error_msg = 'Check repetitions_of_experiment'
+    # if dd.get('repetitions_per_function', None) is None or not int_try_parse(dd.get('repetitions_per_function')):
+    #     error_msg = 'Check repetitions_per_function'
+    # if dd.get('concurrency', None) is None or not int_try_parse(dd.get('concurrency')):
+    #     error_msg = 'Check concurrency'
+    # if dd.get('payload', None) is None or len(dd.get('payload')) == 0:
+    #     error_msg = 'Check payload'
 
     if error_msg is not None:
 
@@ -224,9 +224,13 @@ if keep_mode == KeepMode.KEEP_NONE:
 
 if baas:
     print("------------------------------------------------------------------------------")
-    #TODO may be find some sort of path variable instead of using strings
-    # project_path = 'C:\\Users\\Johann\\Documents\\uibk\\BachelorArbeit\\testOpsGradleImpl'
-    analyserBaas.build_statemachine()
+    deployment_dict = deployerBaas.build(deployment_dict)
+    deployerBaas.write_tfvars(deployment_dict)
+    arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
+    arn = arns[deployment_dict["function_name"]]
+    deployment_dict.update({"lambdaARN":arn})
+    with open(json_candidate, "w") as json_file:
+        json.dump(deployment_dict, json_file, indent=4)
 
 
 

@@ -1,0 +1,9 @@
+{
+    "function_name": "main",
+    "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
+    "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSRequestHandler.java",
+    "terraform_dir": "./terraform",
+    "aws_handler": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSRequestHandler.java",
+    "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
+    "lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:main"
+}

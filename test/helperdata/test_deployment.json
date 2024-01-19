@@ -1,0 +1,8 @@
+{
+	"aws_handler": "this is the aws handler",
+	"function_name": "main",
+	"project_path": "./tests/helperdata",
+	"main_class": "./tests/helperdata/HelloWorld.java",
+
+	"terraform_dir": "./tests/helperdata"
+}
