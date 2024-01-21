@@ -89,12 +89,13 @@ def print_config():
 logging.basicConfig(filename='last_run.log', encoding='utf-8', level=logging.DEBUG, filemode='w')
 
 json_candidate = None
-
+#NOTE analyse is written differently should be coherent ...
 deployment_dict = None
 deploy = False
 invoke = False
 analyze = False
-baas = False
+baas_deploy = False
+bass_analyse = False
 plot = True
 deploy_noop = True
 keep_mode = KeepMode.KEEP_ALL
@@ -106,7 +107,8 @@ parser.add_argument('-d', '--deploy', action='store_true', help='Tells testOps t
 parser.add_argument('-i', '--invoke', action='store_true', help='Tells testOps to invoke and time functions')
 parser.add_argument('-a', '--analyse', action='store_true', help='Tells testOps to analyse data either from the output of the -invoke option or the inputjson is no -invoke is present')
 parser.add_argument('-keep', default='all', choices=['all', 'none', 'pareto'], help='Tells testops what to do with the deployed functions, the pareto option requires -a')
-parser.add_argument('-d2', '--baas', action='store_true', help='tells testOps to deploy using terraform')
+parser.add_argument('-d2', '--baas_deploy', action='store_true', help='tells testOps to deploy using terraform')
+parser.add_argument('-a2', '--baas_analyse', action='store_true', help='uses powertuner to analyse the aws function')
 
 args = parser.parse_args()
 if args.deploy:
@@ -115,8 +117,10 @@ if args.invoke:
     invoke = True
 if args.analyse:
     analyze = True
-if args.baas:
-    baas = True
+if args.baas_deploy:
+    baas_deploy = True
+if args.baas_analyse:
+    baas_analyse = True
 
 json_candidate = args.filename
 if args.keep == 'none':
@@ -129,8 +133,8 @@ if exists(json_candidate):
 else:
     raise FileNotFoundError('The file %s was not found!' % json_candidate)
 
-if not deploy and not invoke and not analyze and not baas:
-    print('You must pick at least one of the functions: deploy/deploy2, test, analyse.')
+if all(not task for task in [deploy, invoke, analyze, baas_deploy, baas_analyse]):
+    print('You must pick at least one of the functions: deploy/deploy2, test, analyse/analyse2.')
     print('Aborting process! Have a nice day!')
     exit()
 
@@ -222,7 +226,7 @@ if analyze:
 if keep_mode == KeepMode.KEEP_NONE:
     deployer_v2.delete_function(deployment_dict=deployment_dict)
 
-if baas:
+if baas_deploy:
     deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict.get("aws_handler", deployment_dict["main_class"]), deployment_dict["function_name"]))
     deployerBaas.prepare_tfvars(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"])
     arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
@@ -230,6 +234,15 @@ if baas:
     deployment_dict.update({"lambdaARN":arn})
     with open(json_candidate, "w") as json_file:
         json.dump(deployment_dict, json_file, indent=4)
+
+if baas_analyse:
+    # analyserBaas.powertuner_setup() #succeeded 18:54
+    # deployment_dict.update(analyserBaas.create_config_file(deployment_dict)) #succeeded 19:20 
+    analyserBaas.build_statemachine() #succeeded 19:28
+    # analyserBaas.fill_json(deployment_dict["lambdaARN"]) #succeeded 19:47
+    # analyserBaas.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
+    # with open(json_candidate, "w") as json_file:
+    #     json.dump(deployment_dict, json_file, indent=4)
 
 
 

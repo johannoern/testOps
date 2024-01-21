@@ -6,6 +6,9 @@ import re
 from Baas import helpers
 from python_terraform import Terraform
 
+#this file deploys your function using terrafrom
+#prerequisite terraform
+
 terraform_default_dir = ".\\terraform"
 default_region = "us-east-1"
 

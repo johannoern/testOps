@@ -2,6 +2,11 @@
 	"function_name": "main",
 	"project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
 	"main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
-
+	"AWS_regions": {
+		"us-east-1": {
+			"memory_configurations":[
+			128, 256
+		]}
+	},
 	"terraform_dir": "./terraform"
 }

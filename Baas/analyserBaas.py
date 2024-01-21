@@ -1,4 +1,6 @@
 import json
+import re
+from subprocess import CalledProcessError
 import toml
 import shutil
 from Baas import helpers
@@ -11,8 +13,6 @@ from git import Repo
     #1. sam cli - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
     #2. docker - https://docs.docker.com/engine/install/
     #3. git bash - https://www.git-scm.com/downloads
-
-#NOTE get rid of the shell=True and make it work independent of the platform
 
 def get_power_tuning_path():
     return os.path.join('.', 'Baas', 'aws-lambda-power-tuning')
@@ -30,9 +30,11 @@ def powertuner_setup():
     helpers.execute(command)
 
 #worked 15.01. 01:26
-#creates default config file overwriting defaults if param is given in configs
+#creates default config (samconfig.toml) file overwriting defaults if param is given in configs
 #!!!name must be given
 def create_config_file(configs:dict):
+    wanted_keys = ['name', 'version', 'stack_name', 'resolve_s3', 's3_prefix', 'region', 'confirm_changeset', 'capabilities', 'parameter_overrides', 'image_repositories'] # The keys you want
+    configs = dict((k, configs[k]) for k in wanted_keys if k in configs)  
     power_tuning_path = get_power_tuning_path()
     
     #copy default file if no file exists in aws-lambda-power-tuning
@@ -41,67 +43,57 @@ def create_config_file(configs:dict):
         default_path = os.path.join('.','Baas', 'samconfig.toml')
         shutil.copy(default_path, power_tuning_path)    
 
-    #!!!the stack will need a name
-    if "name" not in configs:
-        if configs.keys() >= {"stack_name", "s3_prefix"}:
-            raise Exception("the 'name' attribute has to be provided - alternatively 'stack_name' and and 's3_prefix' can be provided separately")
+    if not configs.keys() >= {"stack_name", "s3_prefix"}:
+        if "name" in configs.keys():
+            configs.update({"stack_name":configs["name"]})
+            configs.update({"s3_prefix":configs["name"]})
         else:
-            configs.update("stack_name", configs["stack_name"])
-            configs.update("s3_prefix", configs["s3_prefix"])
-    else:
-        configs.update({"stack_name":configs["name"]})
-        configs.update({"s3_prefix":configs["name"]})
-    
-    #currently the name attribute overrides the single attributes - could of course be changed
-    
-
+            raise Exception("the 'name' attribute has to be provided - alternatively 'stack_name' and and 's3_prefix' can be provided separately")
+        
+    #validate stack_name
+    if not re.match("[a-zA-Z][-a-zA-Z0-9]*", configs["stack_name"]):
+        print (f"{configs['stack_name']}failed to satisfy constraing: Stack_name/Name must satisfy regular expression pattern: [a-zA-Z][-a-zA-Z0-9]*")
+   
     #open the default config and update it with the input configs
     with open(toml_path, 'r') as file:
         samconfig = toml.load(file)
-
-    samconfig.update(configs)
+    samconfig['default']['deploy']['parameters'].update(configs)
     with open(toml_path, "w") as toml_file:
         toml.dump(samconfig, toml_file)
+    return configs
 
-#worked 15.01. 19:04
 #build state machine
 def build_statemachine():
     #go to the aws_lambda_power_tuning folder
     command = f"cd {get_power_tuning_path()} && sam deploy"
-    helpers.execute(command)
+    try:
+        helpers.execute(command)
+    except CalledProcessError as e:
+        print(e)
+        print("testops ignores error and carries on with existing Stack")
+        
 
 #fill json for execution
-    #strategy, memory configs to test, !!!lambda ARN!!! - might be known from the deploy
+    #NOTE could be extended to payload, parallelInvocation - may mem configs can be set for the user
+    #AWS_regions/region, lambdaARN, strategy - payload, parallelInvocation
 #worked 15.01. 19:18
-def fill_json(configs:dict):
+def fill_json(lambdaARN, memory_configs = [128, 256], strategy="cost"):
     #read sample json
-    sample_input_file = os.path.join(get_power_tuning_path(), 'scripts', 'sample-execution-input.json')
+    sample_input_file = os.path.join("Baas", "sample-execution-input.json")
     with open(sample_input_file, "r") as input_file:
             input = json.load(input_file)
-    #getting the relevant info from the configs
-    #memory config
-    first_region = list(configs["AWS_regions"].keys())[0]
-    input.update({'powerValues':configs['AWS_regions'][first_region]['memory_configurations']})
-    
-    #updating rest #lambdaARN, strategy, payload, parallelInvocation
-    wanted_keys = ['lambdaARN', 'strategy'] # The keys you want
-    relevant_keys = dict((k, configs[k]) for k in wanted_keys if k in configs)        
-    
-    #update it using the right values
-    input.update(relevant_keys)
 
-    with open(sample_input_file, "w") as input_file:
+    #updating rest #lambdaARN, memory_configs, strategy
+    update_dict = {"lambdaARN":lambdaARN, "powerValues":memory_configs, "strategy":strategy}
+    input.update(update_dict)
+
+    output_path = os.path.join(get_power_tuning_path(), "Scripts", "execution_input.json")
+
+    with open(output_path, "w") as input_file:
         json.dump(input, input_file, indent=4)
 
-
-#execute
-def execute_power_tuning(configs:dict):
+def execute_power_tuning(function_name, stack_name):
     script_path = os.path.join(get_power_tuning_path(), 'scripts')
-    command = f"cd {script_path} && .\execute.sh {configs['name']} {configs['function_name']}"
+    command = f"cd {script_path} && .\execute.sh {stack_name} {function_name}_analysis.json"
     helpers.execute(command)
-    output_file = os.path.join(get_power_tuning_path(), 'scripts', f'{configs["function_name"]}.json')
-    with open(output_file, "r") as output:
-            data = json.load(output)
-            print(json.dumps(data, indent=4))
-    return configs.update(data)
     
