@@ -223,9 +223,8 @@ if keep_mode == KeepMode.KEEP_NONE:
     deployer_v2.delete_function(deployment_dict=deployment_dict)
 
 if baas:
-    print("------------------------------------------------------------------------------")
-    deployment_dict = deployerBaas.build(deployment_dict)
-    deployerBaas.write_tfvars(deployment_dict)
+    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict.get("aws_handler", deployment_dict["main_class"]), deployment_dict["function_name"]))
+    deployerBaas.prepare_tfvars(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"])
     arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
     arn = arns[deployment_dict["function_name"]]
     deployment_dict.update({"lambdaARN":arn})
