@@ -11,10 +11,8 @@ import deployer_v2
 import invoker_v2
 import analyzer_v2
 from Baas import deployerBaas
-from Baas import analyserBaas
-import pandas as pd
+from Baas import aws_lambda_power_tuner as lambda_tuner
 import logging
-import os
 
 
 def int_try_parse(value):
@@ -95,7 +93,7 @@ deploy = False
 invoke = False
 analyze = False
 baas_deploy = False
-bass_analyse = False
+baas_analyse = False
 plot = True
 deploy_noop = True
 keep_mode = KeepMode.KEEP_ALL
@@ -236,13 +234,16 @@ if baas_deploy:
         json.dump(deployment_dict, json_file, indent=4)
 
 if baas_analyse:
-    # analyserBaas.powertuner_setup() #succeeded 18:54
-    # deployment_dict.update(analyserBaas.create_config_file(deployment_dict)) #succeeded 19:20 
-    analyserBaas.build_statemachine() #succeeded 19:28
-    # analyserBaas.fill_json(deployment_dict["lambdaARN"]) #succeeded 19:47
-    # analyserBaas.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
-    # with open(json_candidate, "w") as json_file:
-    #     json.dump(deployment_dict, json_file, indent=4)
+    if(deployment_dict.get("powertuner_setup", False)):
+        print("setup (cloning repo and building statemachine) was already done\nIf it should be repeated change 'powertuner_setup' to False")
+    else:
+        lambda_tuner.powertuner_setup()
+        deployment_dict.update(lambda_tuner.create_config_file(deployment_dict))
+        lambda_tuner.build_statemachine()
+    lambda_tuner.fill_json(deployment_dict["lambdaARN"])
+    lambda_tuner.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
+    with open(json_candidate, "w") as json_file:
+        json.dump(deployment_dict, json_file, indent=4)
 
 
 

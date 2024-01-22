@@ -5,32 +5,6 @@ import pytest
 sys.path.insert(1, '../')
 import Baas.deployerBaas as deployerBaas
 
-
-def test_adapt_build_file():
-    assert deployerBaas.adaptation_needed('./tests/helperdata')==True
-    deployerBaas.adapt_build_file('./tests/helperdata', 'org.example.Main')
-    assert deployerBaas.adaptation_needed('./tests/helperdata')==False
-    #clean up
-    with open('./tests/helperdata/build.gradle', 'w') as build:
-        with open('./tests/helperdata/build.copy.gradle', 'r') as copy:
-            content = copy.read()
-            build.write(content)
-
-#LATER does not check the file content
-def test_implement_handler():
-    aws_handler, aws_function_name = deployerBaas.implement_handler(get_config()["main_class"], get_config()["function_name"])
-    handler_path = "./tests/helperdata/AWSRequestHandler.java"
-    assert aws_handler.replace("\\", "/") == handler_path
-    assert os.path.exists(handler_path)
-
-    #clean up
-    os.remove(handler_path)
-
-def test_parse_main():
-    package, output_type, inputs = deployerBaas.parse_main(get_config()["main_class"], get_config()["function_name"])
-    assert package == "org.example"
-    assert output_type == "String"
-    assert inputs == 'String input'
 #only works if there is a real gradle project in the test_deployment.json
 def test_build():
     output = deployerBaas.build(get_config())

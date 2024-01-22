@@ -1,5 +1,5 @@
 {
-    "name": "powertestingStack",
+    "name": "awsFinalTest",
     "function_name": "handleRequest",
     "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
     "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
@@ -7,6 +7,6 @@
     "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
     "aws_handler": "org.example.AWSRequestHandler",
     "lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:handleRequest",
-    "stack_name": "powertestingStack",
-    "s3_prefix": "powertestingStack"
+    "stack_name": "awsFinalTest",
+    "s3_prefix": "awsFinalTest"
 }

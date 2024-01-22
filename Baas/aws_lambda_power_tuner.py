@@ -17,11 +17,12 @@ from git import Repo
 def get_power_tuning_path():
     return os.path.join('.', 'Baas', 'aws-lambda-power-tuning')
 
-#worked 15.01. 1:10
 def powertuner_setup():
     powertuner_url="https://github.com/alexcasalboni/aws-lambda-power-tuning.git"
     if not os.path.isdir(get_power_tuning_path()):
         Repo.clone_from(powertuner_url, get_power_tuning_path())
+        #copy execute.sh
+        shutil.copy(os.path.join('.', 'Baas', 'execute.sh'), os.path.join(get_power_tuning_path(), "Scripts"))
     #build sam app
     #NOTE check the linkage of the command - probably does not work in all editors
     #also would be great if output was continous to know that progress is being made
@@ -29,7 +30,6 @@ def powertuner_setup():
 
     helpers.execute(command)
 
-#worked 15.01. 01:26
 #creates default config (samconfig.toml) file overwriting defaults if param is given in configs
 #!!!name must be given
 def create_config_file(configs:dict):
@@ -62,7 +62,6 @@ def create_config_file(configs:dict):
         toml.dump(samconfig, toml_file)
     return configs
 
-#build state machine
 def build_statemachine():
     #go to the aws_lambda_power_tuning folder
     command = f"cd {get_power_tuning_path()} && sam deploy"
@@ -76,7 +75,6 @@ def build_statemachine():
 #fill json for execution
     #NOTE could be extended to payload, parallelInvocation - may mem configs can be set for the user
     #AWS_regions/region, lambdaARN, strategy - payload, parallelInvocation
-#worked 15.01. 19:18
 def fill_json(lambdaARN, memory_configs = [128, 256], strategy="cost"):
     #read sample json
     sample_input_file = os.path.join("Baas", "sample-execution-input.json")
@@ -96,4 +94,3 @@ def execute_power_tuning(function_name, stack_name):
     script_path = os.path.join(get_power_tuning_path(), 'scripts')
     command = f"cd {script_path} && .\execute.sh {stack_name} {function_name}_analysis.json"
     helpers.execute(command)
-    
