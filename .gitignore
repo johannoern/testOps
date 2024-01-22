@@ -1,6 +1,7 @@
 venv/
 terraform/.terraform/providers
 .idea/
+Baas/aws_lambda_power_tuning
 
 __pycache__/
 
