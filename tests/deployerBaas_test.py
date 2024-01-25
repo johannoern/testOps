@@ -18,11 +18,11 @@ def test_write_tfvars():
 
     expected_msg = "KeyError: Key 'aws_code' is required but not found.\n after testops build 'aws_code' is set automatically"
     with pytest.raises(ValueError, match = expected_msg):
-        deployerBaas.prepare_tfvars(values["aws_handler"], values["function_name"], values["terraform_dir"])
+        deployerBaas.prepare_tfvars_aws(values["aws_handler"], values["function_name"], values["terraform_dir"])
 
     values.update({"aws_code": "aws/code/is_here"})
 
-    deployerBaas.prepare_tfvars(values["aws_handler"], values["function_name"], values["terraform_dir"], values["aws_code"])
+    deployerBaas.prepare_tfvars_aws(values["aws_handler"], values["function_name"], values["terraform_dir"], values["aws_code"])
     #check that it exists
     assert os.path.exists('./tests/helperdata/terraform.tfvars.json') == True
     with open(tfvars_path) as tfvars:

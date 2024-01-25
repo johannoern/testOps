@@ -1,18 +1,16 @@
 {
-	"lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:handleRequest_128MB",
-	"name":"name",
 	"function_name": "handleRequest",
-	"aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/testOpsGradleImpl/build/libs/testOpsGradleImpl-1.0-SNAPSHOT.jar",
-	"gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/testOpsGradleImpl/build/libs/testOpsGradleImpl-1.0-SNAPSHOT.jar",
+	"aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
+	"gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output_20240125_133037.zip",
 	"no_op_code": "s3://testOps_no_op.zip",
-	"aws_handler": "org.example.baas.AWSRequestHandler",
-	"gcp_handler":  "not_implemented_yet",
+	"aws_handler": "org.example.AWSRequestHandler",
+	"gcp_handler":  "org.example.AWSRequestHandler",
 	"no_op_handler_aws": "lambda_function.lambda_handler",
 	"no_op_handler_gcp":  "entry_handler",
-	"gcp_project_id": "not_yet_inserted",
+	"gcp_project_id": "testproject-uibk ",
 	"aws_deployment_role" : "arn:aws:sts::650940819061:assumed-role/testops-temp/fibonacci",
 	"aws_runtime": "java11",
-	"gcp_runtime": "gcp_not_implemented",
+	"gcp_runtime": "java11",
 	"file_type": "zip",
 	"repetitions_of_experiment": 1,
     "repetitions_per_function": 2,
@@ -20,6 +18,12 @@
 	"payload": [{"input": 10}],
 	"AWS_regions": {
 		"us-east-1": {
+			"memory_configurations":[
+			128, 256
+		]}
+	},
+	"GCP_regions": {
+		"us-central1": {
 			"memory_configurations":[
 			128, 256
 		]}

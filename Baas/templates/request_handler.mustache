@@ -1,0 +1,32 @@
+package {{package}};
+
+{{#aws}}import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;{{/aws}}
+{{#gcp}}import com.google.cloud.functions.HttpFunction;
+import com.google.cloud.functions.HttpRequest;
+import com.google.cloud.functions.HttpResponse;
+import java.io.PrintWriter;{{/gcp}}
+
+public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}}, {{output_type}}>{{/aws}}, {{#gcp}}HttpFunction{{/gcp}} {
+    {{#aws}}
+    @Override
+    public {{output_type}} handleRequest({{input_type}} input, Context context) {
+        {{output_type}} output="";
+        {{method_call}};
+        return output;
+    }
+    {{/aws}}
+    {{#gcp}}
+    @Override
+    public void service(HttpRequest request, HttpResponse response) throws Exception {
+        String input = request.getFirstQueryParameter("input").orElse("defaultInput");
+
+        {{output_type}} output="";
+        {{method_call}};
+
+        PrintWriter writer = new PrintWriter(response.getWriter());
+        writer.println(output.toString());
+        writer.flush();
+    }
+{{/gcp}}
+}

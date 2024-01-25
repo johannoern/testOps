@@ -79,7 +79,6 @@ variable "gcp" {
     function_src = string,
     project      = string,
     region       = string,
-    src_name     = string,
     functions    = list(
       object({
         function_name = string,
@@ -93,7 +92,6 @@ variable "gcp" {
     function_src = ""
     project      = ""
     region       = "us-east1"
-    src_name = ""
     functions    = []
   }
 }
@@ -110,7 +108,7 @@ resource "google_storage_bucket" "gcp_bucket" {
 }
 
 resource "google_storage_bucket_object" "jar" {
-  name   = var.gcp.src_name
+  name   = "output.zip"
   bucket = google_storage_bucket.gcp_bucket.name
   source = var.gcp.function_src
 }

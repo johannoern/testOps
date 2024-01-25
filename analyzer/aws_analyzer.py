@@ -7,7 +7,7 @@ from analyzer.analyzer_interface import AnalyzerInterface
 
 
 class AWSAnalyzer(AnalyzerInterface):
-    def analyze(self, *, deployment_dict: Dict, assumed_invocations: int = 1000000, **kwargs):
+    def analyze(self, *, deployment_dict: dict, assumed_invocations: int = 1000000, **kwargs):
         getcontext().prec = 10
         logging.debug('AWS::Analyze')
         print('AWS::Analyze')

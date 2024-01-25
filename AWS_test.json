@@ -1,12 +1,26 @@
 {
-    "name": "awsFinalTest",
-    "function_name": "handleRequest",
+    "old_analyser": true,
+    "name": "Powertuning",
+    "provider": [
+        "aws",
+        "gcp"
+    ],
+    "gcp_project": "testproject-uibk",
+    "function_name": "main",
     "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
     "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
+    "memory_configurations": [
+        128,
+        256
+    ],
     "terraform_dir": "./terraform",
     "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
     "aws_handler": "org.example.AWSRequestHandler",
+    "gcp_handler": "org.example.AWSRequestHandler",
+    "aws_function_name": "handleRequest",
+    "gcp_function_name": "service",
+    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output_20240125_133037.zip",
     "lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:handleRequest",
-    "stack_name": "awsFinalTest",
-    "s3_prefix": "awsFinalTest"
+    "stack_name": "Powertuning",
+    "s3_prefix": "Powertuning"
 }

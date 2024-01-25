@@ -22,7 +22,7 @@ def powertuner_setup():
     if not os.path.isdir(get_power_tuning_path()):
         Repo.clone_from(powertuner_url, get_power_tuning_path())
         #copy execute.sh
-        shutil.copy(os.path.join('.', 'Baas', 'execute.sh'), os.path.join(get_power_tuning_path(), "Scripts"))
+        shutil.copy(os.path.join('.', 'Baas', 'templates', 'execute.sh'), os.path.join(get_power_tuning_path(), "Scripts"))
     #build sam app
     #NOTE check the linkage of the command - probably does not work in all editors
     #also would be great if output was continous to know that progress is being made
@@ -40,7 +40,7 @@ def create_config_file(configs:dict):
     #copy default file if no file exists in aws-lambda-power-tuning
     toml_path = os.path.join(power_tuning_path, 'samconfig.toml')
     if not os.path.exists(toml_path):
-        default_path = os.path.join('.','Baas', 'samconfig.toml')
+        default_path = os.path.join('.','Baas', 'templates', 'samconfig.toml')
         shutil.copy(default_path, power_tuning_path)    
 
     if not configs.keys() >= {"stack_name", "s3_prefix"}:
@@ -77,7 +77,7 @@ def build_statemachine():
     #AWS_regions/region, lambdaARN, strategy - payload, parallelInvocation
 def fill_json(lambdaARN, memory_configs = [128, 256], strategy="cost"):
     #read sample json
-    sample_input_file = os.path.join("Baas", "sample-execution-input.json")
+    sample_input_file = os.path.join("Baas", "templates", "sample-execution-input.json")
     with open(sample_input_file, "r") as input_file:
             input = json.load(input_file)
 
