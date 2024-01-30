@@ -25,11 +25,8 @@ public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}},
         {{output_type}} output="";
         {{method_call}};
 
-        Gson gson = new Gson();
-        String jsonOutput = gson.toJson(output);
-
         PrintWriter writer = new PrintWriter(response.getWriter());
-        writer.println(jsonOutput);
+        writer.println(output.toString());
         writer.flush();
     }
 {{/gcp}}
