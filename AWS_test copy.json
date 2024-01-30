@@ -1,4 +1,5 @@
 {
+	"old_analyser": true,
 	"name": "Powertuning",
 	"provider": ["aws", "gcp"],
 	"function_name": "main",

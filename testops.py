@@ -229,7 +229,7 @@ if baas_deploy:
     deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
     deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"], deployment_dict["gcp_project"], deployment_dict["terraform_dir"], deployment_dict["gcp_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
     arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
-    arn = arns[deployment_dict["aws_function_name"]]
+    arn = arns[deployment_dict["function_name"]]
     deployment_dict.update({"lambdaARN":arn})
     with open(json_candidate, "w") as json_file:
         json.dump(deployment_dict, json_file, indent=4)
