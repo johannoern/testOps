@@ -23,8 +23,8 @@ def run_experiment(deployment_info_json: Union[dict, str]) -> Dict:
     aws = AWSInvoker()
     gcp = GCPInvoker(gcp_project_id=deployment_dict['gcp_project_id'])
 
-    invoker_list.append(aws)
     invoker_list.append(gcp)
+    invoker_list.append(aws)
 
     payload = deployment_dict.get('payload')
 

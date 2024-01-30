@@ -5,27 +5,20 @@ import pystache
 
 #NOTE if main hash has changed or does not exist handler has to be rewritten
 #TODO also if the Handler needed to change as the main_function changes that also has to return false - may be store the hash of the orig main
-def handler_implemented(main_class):
-    if any(keyword in main_class for keyword in ("RequestHandler", "HttpFunction")):
-        return True
-    with open(main_class, "r") as main:
-        content = main.read()
-        match = re.search(r"implements(\s+(Request[^ ]*[^>]*>)|\sRequestStreamHandler)", content)
-    if match:
-        return True
-    else:
-        return False
+def handler_implemented():
+    return False
 
 #LATER cannot build RequestStreamHandler only RequestHandler
 def implement_handler(main_class, function_name, provider: list):
     #NOTE not to pretty really have to change the handler_implemented method
     aws_function_name = "handleRequest"
     gcp_function_name = "service"
-    if handler_implemented(main_class):
+    if handler_implemented():
         print("seems like the handler is already implemented and up to date")
         return main_class, aws_function_name, gcp_function_name
     package, output_type, inputs = parse_main(main_class, function_name)
 
+    print("implementing handler")
     main_class_name = os.path.basename(main_class)
     main_folder = os.path.dirname(main_class)
 
@@ -37,7 +30,7 @@ def implement_handler(main_class, function_name, provider: list):
 
     if output_type == "void":
         methodcall = f"{main_class_name}.{function_name}({inputs})"
-        output_type = "Object"
+        output_type = "String"
     else:
         methodcall = f"output = {main_class_name}.{function_name}({inputs})"
 

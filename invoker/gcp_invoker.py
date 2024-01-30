@@ -30,7 +30,8 @@ class GCPInvoker(InvokerInterface):
                 for region in deployment_dict['GCP_regions']:
                     print(region)
                     if rep_experiment == 0:
-                        for no_op_counter in range(50):
+                        #TODO change counter range back to 50
+                        for no_op_counter in range(5):
                             res = {'execution_start_utc': datetime.now(timezone.utc)}
                             start = perf_counter()
                             self.invoke_single_function(function_name='testOps_no_op_function', payload={}, region=region)
@@ -55,14 +56,21 @@ class GCPInvoker(InvokerInterface):
                         with ThreadPoolExecutor(max_workers=concurrency) as executor:
                             counter = 0
                             result = []
+                            #NOTE rep_function is probably the same as counter also with more concurrency
                             for rep_function in range(repetitions_per_function):
-                                result.append(executor.submit(self.__invoker_timed, full_function_name,
-                                                              payload[counter % len(payload)], region))
+                                future = executor.submit(self.__invoker_timed, full_function_name,
+                                                              payload[counter % len(payload)], region)
+                                result.append(future)
                                 counter += 1
+                                print(f"counter: {counter}\nrep_function: {rep_function}")
 
                             done, not_done = wait(result, return_when=concurrent.futures.ALL_COMPLETED)
                             for future in result:
-                                print('this is your result:', future.result())
+                                print(type(future))
+                                print("this is a 'future' in the result:")
+                                print(future)
+                                print('this is the future.result:')
+                                print(future.result())
                                 result_list.append(future.result())
 
                         end = perf_counter()
@@ -77,7 +85,9 @@ class GCPInvoker(InvokerInterface):
         return deployment_dict
 
     def invoke_single_function(self, *, function_name: str, payload: Dict, region: str, **kwargs):
+
         url_adress = f'https://{region}-{self.__project_name}.cloudfunctions.net/{function_name}'
+
         creds = service_account.IDTokenCredentials.from_service_account_file(
             'google_credentials.json', target_audience=url_adress)
 
@@ -102,6 +112,7 @@ class GCPInvoker(InvokerInterface):
         r = Request()
         creds.refresh(r)
 
+        #<class 'requests.models.Response'>
         response = authed_session.post(url_adress, json=payload)
         end = perf_counter()
         res['execution_time'] = round((end - start) * 1000)
@@ -109,5 +120,5 @@ class GCPInvoker(InvokerInterface):
         res['thread_name'] = thread.name
         res['thread_ident'] = thread.ident
         res['status_code'] = response.status_code
-        res['response'] = json.loads(response.content)
+        res['response'] = json.loads(response.content.decode('utf-8'))
         return res

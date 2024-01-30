@@ -5,7 +5,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;{{/aws}}
 {{#gcp}}import com.google.cloud.functions.HttpFunction;
 import com.google.cloud.functions.HttpRequest;
 import com.google.cloud.functions.HttpResponse;
-import java.io.PrintWriter;{{/gcp}}
+import java.io.PrintWriter;
+import com.google.gson.Gson;{{/gcp}}
 
 public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}}, {{output_type}}>{{/aws}}, {{#gcp}}HttpFunction{{/gcp}} {
     {{#aws}}
@@ -24,8 +25,11 @@ public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}},
         {{output_type}} output="";
         {{method_call}};
 
+        Gson gson = new Gson();
+        String jsonOutput = gson.toJson(output);
+
         PrintWriter writer = new PrintWriter(response.getWriter());
-        writer.println(output.toString());
+        writer.println(jsonOutput);
         writer.flush();
     }
 {{/gcp}}

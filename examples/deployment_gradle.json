@@ -1,5 +1,5 @@
 {
-	"function_name": "handleRequest",
+	"function_name": "main",
 	"aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
 	"gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output_20240125_133037.zip",
 	"no_op_code": "s3://testOps_no_op.zip",
@@ -7,7 +7,7 @@
 	"gcp_handler":  "org.example.AWSRequestHandler",
 	"no_op_handler_aws": "lambda_function.lambda_handler",
 	"no_op_handler_gcp":  "entry_handler",
-	"gcp_project_id": "testproject-uibk ",
+	"gcp_project_id": "testproject-uibk",
 	"aws_deployment_role" : "arn:aws:sts::650940819061:assumed-role/testops-temp/fibonacci",
 	"aws_runtime": "java11",
 	"gcp_runtime": "java11",
@@ -15,7 +15,7 @@
 	"repetitions_of_experiment": 1,
     "repetitions_per_function": 2,
     "concurrency": 1,
-	"payload": [{"input": 10}],
+	"payload": [{"input": ""}],
 	"AWS_regions": {
 		"us-east-1": {
 			"memory_configurations":[

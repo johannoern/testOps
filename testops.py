@@ -225,9 +225,9 @@ if keep_mode == KeepMode.KEEP_NONE:
     deployer_v2.delete_function(deployment_dict=deployment_dict)
 
 if baas_deploy:
-    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict.get("aws_handler", deployment_dict["main_class"]), deployment_dict["function_name"], deployment_dict["provider"]))
-    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["aws_function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
-    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["gcp_function_name"], deployment_dict["gcp_project"], deployment_dict["terraform_dir"], deployment_dict["gcp_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
+    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict["main_class"], deployment_dict["function_name"], deployment_dict["provider"]))
+    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
+    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"], deployment_dict["gcp_project"], deployment_dict["terraform_dir"], deployment_dict["gcp_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
     arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
     arn = arns[deployment_dict["aws_function_name"]]
     deployment_dict.update({"lambdaARN":arn})
