@@ -94,6 +94,12 @@ def validate_schema(schema_name: str, dict: dict):
     except jsonschema.exceptions.ValidationError as e:
         sys.exit(f"Validation against {schema_name} failed: {e.message}")
 
+def populate_defaults(default_file: str, deployment_dict: dict):
+    with open (f"./schemas/{default_file}") as file:
+        defaults = json.load(file)    
+    defaults.update(deployment_dict)
+    return defaults
+
 logging.basicConfig(filename='last_run.log', encoding='utf-8', level=logging.DEBUG, filemode='w')
 
 json_candidate = None
@@ -163,12 +169,20 @@ print_config()
 #LATER validations in separate function
 if build:
     validate_schema("build_schema.json", deployment_dict)    
-    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict["main_class"], deployment_dict["function_name"], deployment_dict["provider"]))
+    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict["main_class"],
+                                              deployment_dict["function_name"], deployment_dict["provider"]))
 
 if baas_deploy:
+    deployment_dict = populate_defaults("deploy_default.json", deployment_dict)
     validate_schema("deploy_schema.json", deployment_dict)
-    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
-    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"], deployment_dict["gcp_project"], deployment_dict["terraform_dir"], deployment_dict["gcp_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
+    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"],
+                                    deployment_dict["terraform_dir"], deployment_dict["old_analyser"],
+                                    deployment_dict['memory_configurations'], deployment_dict["aws_region"],
+                                    deployment_dict["aws_code"])
+    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"],
+                                    deployment_dict["gcp_project_id"], deployment_dict["terraform_dir"],
+                                    deployment_dict["old_analyser"], deployment_dict['memory_configurations'],
+                                    deployment_dict["gcp_region"], deployment_dict["gcp_code"])
     arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
     arn = arns[deployment_dict["function_name"]]
     deployment_dict.update({"lambdaARN":arn})
@@ -275,8 +289,7 @@ if baas_analyse:
         lambda_tuner.build_statemachine()
     lambda_tuner.fill_json(deployment_dict["lambdaARN"])
     lambda_tuner.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
-#safe the additions to the json file   
-with open(json_candidate, "w") as json_file:
-        json.dump(deployment_dict, json_file, indent=4)
+#safe the additions to the json file
+export_json_to_file(json_candidate, deployment_dict)
 
 

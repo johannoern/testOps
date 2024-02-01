@@ -3,6 +3,8 @@ import re
 import os
 import pystache
 
+#NOTE this class is not only used for aws and also it is not only used for deploy but also build - therefore a change in the class name would be good
+
 #NOTE if main hash has changed or does not exist handler has to be rewritten
 #TODO also if the Handler needed to change as the main_function changes that also has to return false - may be store the hash of the orig main
 def handler_implemented():

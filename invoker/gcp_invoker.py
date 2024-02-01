@@ -32,6 +32,7 @@ class GCPInvoker(InvokerInterface):
                     print(region)
                     if rep_experiment == 0:
                         #TODO change counter range back to 50
+                        #TODO make sure output is checked
                         for no_op_counter in range(5):
                             res = {'execution_start_utc': datetime.now(timezone.utc)}
                             start = perf_counter()
@@ -100,6 +101,8 @@ class GCPInvoker(InvokerInterface):
         # make authenticated request
 
         response = authed_session.post(url_adress, json=payload)
+        print("gcp response - TODO check if 200")
+        print(response)
 
     def __invoker_timed(self, function_name: str, payload: Dict, region: str) -> Dict:
         res = {'execution_start_utc': datetime.now(timezone.utc)}

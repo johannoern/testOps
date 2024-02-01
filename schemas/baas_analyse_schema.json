@@ -1,7 +1,7 @@
 {
     "type":"object",
     "title": "testOps_build",
-    "required": ["provider", "function_name", "project_path", "main_class", "name", "gcp_project"],
+    "required": ["provider", "function_name", "project_path", "main_class", "name", "gcp_project_id"],
     "properties":{
         "provider":{
             "type":"array",
@@ -31,7 +31,7 @@
             "description":"name will be used to create the Stack for AWS Lambda Power Tuning"  
         },
 
-        "gcp_project":{
+        "gcp_project_id":{
             "type":"string",
             "description": "gcp project necessary if working with gcp"
         },

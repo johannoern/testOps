@@ -68,6 +68,17 @@ resource "aws_lambda_function" "test_lambda" {
   runtime = "java11"
 }
 
+resource "aws_lambda_function" "no_op_function"{
+  function_name = "testOps_no_op_function"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "lambda_function.lambda_handler"
+  memory_size   = 256
+  timeout = 3
+  filename = "../Baas/templates/testOps_no_op.zip"
+  source_code_hash = filebase64sha256("../Baas/templates/testOps_no_op.zip")
+  runtime       = "python3.9"
+}
+
 output "lambda_arns" {
   value = {for func in var.amazon.functions : func.function_name => aws_lambda_function.test_lambda[func.function_name].arn}
 }
@@ -79,7 +90,6 @@ variable "gcp" {
     function_src = string,
     project      = string,
     region       = string,
-    src_name     = string,
     functions    = list(
       object({
         function_name = string,
@@ -93,7 +103,6 @@ variable "gcp" {
     function_src = ""
     project      = ""
     region       = "us-east1"
-    src_name = ""
     functions    = []
   }
 }
@@ -103,16 +112,21 @@ provider "google" {
   region  = "us-central1"
 }
 
-#TODO including the project name in the bucket name would be good
 resource "google_storage_bucket" "gcp_bucket" {
   name     = "baas-jfops-bucket"
   location = var.gcp.region
 }
 
 resource "google_storage_bucket_object" "jar" {
-  name   = var.gcp.src_name
+  name   = "output.zip"
   bucket = google_storage_bucket.gcp_bucket.name
   source = var.gcp.function_src
+}
+
+resource "google_storage_bucket_object" "no_op" {
+  name   = "testOps_no_op.zip "
+  bucket = google_storage_bucket.gcp_bucket.name
+  source = "../Baas/templates/testOps_no_op.zip"
 }
 
 resource "google_cloudfunctions_function" "function" {
@@ -128,6 +142,19 @@ resource "google_cloudfunctions_function" "function" {
   source_archive_object = google_storage_bucket_object.jar.name
   trigger_http          = true
   entry_point           = each.value.handler
+  max_instances         = 1
+}
+
+resource "google_cloudfunctions_function" "no_op_function" {
+  name        = "testOps_no_op_function"
+  runtime     = "python39"
+
+  available_memory_mb   = 256
+  timeout               = 3
+  source_archive_bucket = google_storage_bucket.gcp_bucket.name
+  source_archive_object = google_storage_bucket_object.no_op.name
+  trigger_http          = true
+  entry_point           = "entry_handler"
   max_instances         = 1
 }
 

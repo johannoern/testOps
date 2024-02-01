@@ -1,21 +1,14 @@
 {
     "type":"object",
-    "title": "testOps_build",
-    "required": ["provider", "function_name", "gcp_project", "aws_handler", "gcp_handler", "aws_code", "gcp_code"],
+    "title": "testOps_deploy",
+    "required": ["function_name", "gcp_project_id", "aws_handler", "gcp_handler", "aws_code", "gcp_code"],
     "properties":{
-        "provider":{
-            "type":"array",
-            "items": {
-                "type": "string",
-                "enum": ["aws", "gcp"]
-              }
-        },
         "function_name":{
             "type":"string",
             "description":"name of the function, this name will also be used for the deployed function",
             "example": "main"
         },
-        "gcp_project":{
+        "gcp_project_id":{
             "type":"string",
             "description": "gcp project necessary if working with gcp"
         },
@@ -30,6 +23,10 @@
         "aws_region":{
             "type": "string",
             "default": "us-east-1"
+        },
+        "gcp_region":{
+            "type": "string",
+            "default": "us-central1"
         },
         "memory_configurations":{
             "type":"array",

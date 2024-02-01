@@ -11,9 +11,6 @@ from python_terraform import Terraform
 #this file deploys your function using terrafrom
 #prerequisite terraform
 
-terraform_default_dir = ".\\terraform"
-default_region = "us-east-1"
-
 #project_path, main_class/aws_handler, function_name
 def build(project_path, main_class, function_name, provider):
     aws_handler, aws_function_name, gcp_function_name = aws_helpers.implement_handler(main_class, function_name, provider)
@@ -55,7 +52,7 @@ def build(project_path, main_class, function_name, provider):
 #NOTE may be variables should be overwritten rather than updated
 #NOTE memory could may be be estimated somehow
 #NOTE maybe old analyser could be removed - makes args more and function more readable and I do not think is needed anyways
-def prepare_tfvars_aws(aws_handler, aws_function_name, terraform_dir=terraform_default_dir, aws_code=None, old_analyser=False, mem_configs = None, region='us-east-1'):   
+def prepare_tfvars_aws(aws_handler, aws_function_name, terraform_dir, old_analyser, mem_configs, region, aws_code=None):   
     print("preparing_tfvars_aws")
     #terraform_dir
     tfvars = get_tfvars(terraform_dir)  
@@ -80,7 +77,7 @@ def prepare_tfvars_aws(aws_handler, aws_function_name, terraform_dir=terraform_d
 
     write_tfvars(f"{terraform_dir}\\terraform.tfvars.json", tfvars)
 
-def prepare_tfvars_gcp(gcp_handler, gcp_function_name, gcp_project, terraform_dir=terraform_default_dir, gcp_code=None, old_analyser=False, mem_configs=None, region="us-central1"):
+def prepare_tfvars_gcp(gcp_handler, gcp_function_name, gcp_project_id, terraform_dir, old_analyser, mem_configs, region, gcp_code=None,):
     print("preparing_tfvars_gcp")
     #terraform_dir
     tfvars = get_tfvars(terraform_dir)  
@@ -97,7 +94,7 @@ def prepare_tfvars_gcp(gcp_handler, gcp_function_name, gcp_project, terraform_di
 
     functions.append({"handler":gcp_handler, "function_name":gcp_function_name, "memory":memory, "timeout": 3})
     
-    tfvars_update = {"region":region, "function_src":gcp_function_src, "project":gcp_project, "src_name":os.path.basename(gcp_code), "functions":functions}
+    tfvars_update = {"region":region, "function_src":gcp_function_src, "project":gcp_project_id, "src_name":os.path.basename(gcp_code), "functions":functions}
 
     gcp = {"gcp":tfvars_update}
     tfvars.update(gcp)

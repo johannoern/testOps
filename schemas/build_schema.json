@@ -5,7 +5,6 @@
     "properties":{
         "provider":{
             "type":"array",
-            "minItems": 1,
             "items": {
                 "type": "string",
                 "enum": ["aws", "gcp"]
@@ -14,20 +13,17 @@
         "function_name":{
             "type":"string",
             "description":"name of the function, this name will also be used for the deployed function",
-            "example": "main",
-            "minLength": 1
+            "example": "main"
         },
         "project_path":{
             "type":"string",
             "description":"path to the root directory of the project with the function",
-            "example": "C:/Users/User/Documents/ServerlessProject",
-            "minLength": 1
+            "example": "C:/Users/User/Documents/ServerlessProject"
         },
         "main_class":{
             "type":"string",
             "description":"file containing the function/method to be deployed",
-            "example": "C:/Users/User/Documents/ServerlessProject/src/main/java/org/example/ServerlessFunction.java",      
-            "minLength": 1
+            "example": "C:/Users/User/Documents/ServerlessProject/src/main/java/org/example/ServerlessFunction.java"
         }
     }
 }

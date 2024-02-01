@@ -26,7 +26,9 @@ class AWSInvoker(InvokerInterface):
                 experiment_str = 'Experiment_' + str(rep_experiment)
                 for region in deployment_dict['AWS_regions']:
                     if rep_experiment == 0:
-                        for no_op_counter in range(50):
+                        #TODO make sure output is checked
+                        #TODO change back to 50
+                        for no_op_counter in range(5):
                             res = {'execution_start_utc': datetime.datetime.now(timezone.utc)}
                             start = perf_counter()
                             self.invoke_single_function(function_name='testOps_no_op_function', payload={}, region=region)
