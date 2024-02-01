@@ -4,11 +4,13 @@ from invoker import *
 from typing import Union, List, Dict
 import logging
 
-
+#TODO rewrite only taking info that is actually needed
 def run_experiment(deployment_info_json: Union[dict, str]) -> Dict:
     deployment_dict = {}
+    #NOTE unused variable
     deployer_list: List[InvokerInterface] = []
 
+    #NOTE loads the file if path is given - should be deleted as needed arguments will be provided
     if type(deployment_info_json) == str:
         if not exists(deployment_info_json):
             logging.error('FILE NOT FOUND ERROR:: %s' % deployment_info_json)

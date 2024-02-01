@@ -1,6 +1,6 @@
 {
     "type":"object",
-    "title": "testOps inputs",
+    "title": "testOps_build",
     "required": ["provider", "function_name", "project_path", "main_class", "name", "gcp_project"],
     "properties":{
         "provider":{

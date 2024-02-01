@@ -28,11 +28,24 @@ def build(project_path, main_class, function_name, provider):
 #LATER catch potential errors, also check how gradle builds are named
     version = read_gradle_version(os.path.join(project_path, "build.gradle"))
     jar_name = os.path.basename(project_path) + "-" + version + ".jar"
-    jar_path = os.path.join(project_path, "build", "libs", jar_name).replace("\\","/")
+    libs_path = os.path.join(project_path, "build", "libs")
+    jar_path = os.path.join(libs_path, jar_name).replace("\\","/")
+    
 
     formatted_datetime = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     src_name = "output_"+formatted_datetime
-    zip_path = os.path.join(project_path, "build", "libs", src_name + ".zip").replace("\\","/")
+    zip_path = os.path.join(libs_path, src_name + ".zip").replace("\\","/")
+    #delete all output*.zip files
+    
+    # Iterate through the files
+    for file_name in os.listdir(libs_path):
+        # Check if the string_to_match is present in the filename
+        if "output_" in file_name:
+            # Construct the full path to the file
+            file_path = os.path.join(libs_path, file_name)
+            os.remove(file_path)
+    
+    
     with zipfile.ZipFile(zip_path, 'w') as zip_file:
         print(jar_path)
         zip_file.write(jar_path, arcname=os.path.basename(jar_path))

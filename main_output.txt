@@ -1,21 +1,25 @@
 Pareto Cost - ET
    avg_ET  cost
-3     -26  0.28 
+2     -31  0.33
+3     -29  0.26 
 
 Pareto measurements ET
-{'provider': 'GCP', 'region': 'us-central1', 'MB': 256, 'avg_RTT': 492, 'avg_no_op_rtt': 518, 'avg_ET': -26, 'cost': 0.28, 'measurement_points': 2}
+{'provider': 'GCP', 'region': 'us-central1', 'MB': 128, 'avg_RTT': 511, 'avg_no_op_rtt': 542, 'avg_ET': -31, 'cost': 0.33, 'measurement_points': 2}
+{'provider': 'GCP', 'region': 'us-central1', 'MB': 256, 'avg_RTT': 513, 'avg_no_op_rtt': 542, 'avg_ET': -29, 'cost': 0.26, 'measurement_points': 2}
 
 
 Pareto Cost - RTT
    avg_RTT  cost
-3      492  0.28 
+2      511  0.33
+3      513  0.26 
 
 Pareto measurements RTT
-{'provider': 'GCP', 'region': 'us-central1', 'MB': 256, 'avg_RTT': 492, 'avg_no_op_rtt': 518, 'avg_ET': -26, 'cost': 0.28, 'measurement_points': 2}
+{'provider': 'GCP', 'region': 'us-central1', 'MB': 128, 'avg_RTT': 511, 'avg_no_op_rtt': 542, 'avg_ET': -31, 'cost': 0.33, 'measurement_points': 2}
+{'provider': 'GCP', 'region': 'us-central1', 'MB': 256, 'avg_RTT': 513, 'avg_no_op_rtt': 542, 'avg_ET': -29, 'cost': 0.26, 'measurement_points': 2}
 
 
 Analyzer measurements
-{'provider': 'AWS', 'region': 'us-east-1', 'MB': 128, 'avg_RTT': 1260, 'avg_no_op_rtt': 1182, 'avg_ET': 77, 'cost': 0.36, 'measurement_points': 2}
-{'provider': 'AWS', 'region': 'us-east-1', 'MB': 256, 'avg_RTT': 1255, 'avg_no_op_rtt': 1182, 'avg_ET': 72, 'cost': 0.5, 'measurement_points': 2}
-{'provider': 'GCP', 'region': 'us-central1', 'MB': 128, 'avg_RTT': 669, 'avg_no_op_rtt': 518, 'avg_ET': 151, 'cost': 0.75, 'measurement_points': 2}
-{'provider': 'GCP', 'region': 'us-central1', 'MB': 256, 'avg_RTT': 492, 'avg_no_op_rtt': 518, 'avg_ET': -26, 'cost': 0.28, 'measurement_points': 2}
+{'provider': 'AWS', 'region': 'us-east-1', 'MB': 128, 'avg_RTT': 1146, 'avg_no_op_rtt': 1112, 'avg_ET': 33, 'cost': 0.27, 'measurement_points': 2}
+{'provider': 'AWS', 'region': 'us-east-1', 'MB': 256, 'avg_RTT': 1132, 'avg_no_op_rtt': 1112, 'avg_ET': 19, 'cost': 0.28, 'measurement_points': 2}
+{'provider': 'GCP', 'region': 'us-central1', 'MB': 128, 'avg_RTT': 511, 'avg_no_op_rtt': 542, 'avg_ET': -31, 'cost': 0.33, 'measurement_points': 2}
+{'provider': 'GCP', 'region': 'us-central1', 'MB': 256, 'avg_RTT': 513, 'avg_no_op_rtt': 542, 'avg_ET': -29, 'cost': 0.26, 'measurement_points': 2}

@@ -1,5 +1,6 @@
 import sys
 import argparse
+import jsonschema
 from json import JSONDecodeError
 from os.path import exists
 import json
@@ -83,12 +84,22 @@ def print_config():
     print('analyze %s' % analyze)
     print('keep mode %s' % keep_mode)
 
+def validate_schema(schema_name: str, dict: dict):
+    with open (f"./schemas/{schema_name}") as file:
+        build_schema = json.load(file)
+    try:
+        jsonschema.validate(deployment_dict, build_schema)
+        print("successfully validated")
+
+    except jsonschema.exceptions.ValidationError as e:
+        sys.exit(f"Validation against {schema_name} failed: {e.message}")
 
 logging.basicConfig(filename='last_run.log', encoding='utf-8', level=logging.DEBUG, filemode='w')
 
 json_candidate = None
 #NOTE analyse is written differently should be coherent ...
 deployment_dict = None
+build = False
 deploy = False
 invoke = False
 analyze = False
@@ -101,6 +112,7 @@ keep_mode = KeepMode.KEEP_ALL
 # parses arguments and defines cli
 parser = argparse.ArgumentParser(description='A tool to aid with deployment and timing RTT of FaaS', epilog='Have a nice day!')
 parser.add_argument('filename', help='Json input filename')
+parser.add_argument('-b', '--build', action='store_true', help='Tells testOps to build gradle project')
 parser.add_argument('-d', '--deploy', action='store_true', help='Tells testOps to deploy functions')
 parser.add_argument('-i', '--invoke', action='store_true', help='Tells testOps to invoke and time functions')
 parser.add_argument('-a', '--analyse', action='store_true', help='Tells testOps to analyse data either from the output of the -invoke option or the inputjson is no -invoke is present')
@@ -108,7 +120,10 @@ parser.add_argument('-keep', default='all', choices=['all', 'none', 'pareto'], h
 parser.add_argument('-d2', '--baas_deploy', action='store_true', help='tells testOps to deploy using terraform')
 parser.add_argument('-a2', '--baas_analyse', action='store_true', help='uses powertuner to analyse the aws function')
 
+#NOTE does not seem necessary
 args = parser.parse_args()
+if args.build:
+    build = True
 if args.deploy:
     deploy = True
 if args.invoke:
@@ -131,8 +146,8 @@ if exists(json_candidate):
 else:
     raise FileNotFoundError('The file %s was not found!' % json_candidate)
 
-if all(not task for task in [deploy, invoke, analyze, baas_deploy, baas_analyse]):
-    print('You must pick at least one of the functions: deploy/deploy2, test, analyse/analyse2.')
+if all(not task for task in [build, deploy, invoke, analyze, baas_deploy, baas_analyse]):
+    print('You must pick at least one of the functions: build, deploy/deploy2, test, analyse/analyse2.')
     print('Aborting process! Have a nice day!')
     exit()
 
@@ -141,13 +156,31 @@ invoker_return = None
 analyzer_return_dict = None
 analyzer_return_pareto_et = None
 
+#LATER print config feels like to much text in the console
 print('All arguments ok:')
 print_config()
 
+#LATER validations in separate function
+if build:
+    validate_schema("build_schema.json", deployment_dict)    
+    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict["main_class"], deployment_dict["function_name"], deployment_dict["provider"]))
+
+if baas_deploy:
+    validate_schema("deploy_schema.json", deployment_dict)
+    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
+    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"], deployment_dict["gcp_project"], deployment_dict["terraform_dir"], deployment_dict["gcp_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
+    arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
+    arn = arns[deployment_dict["function_name"]]
+    deployment_dict.update({"lambdaARN":arn})
+    with open(json_candidate, "w") as json_file:
+        json.dump(deployment_dict, json_file, indent=4)
+
+#NOTE uses pystorage which could not be found and is an additional burden on the dev - could be deleted as BaasDeploy can be used.
 if deploy:
     create_credentials()
     deployer_return = deployer_v2.deploy_function(deployment_dict, deploy_no_op=deploy_noop)
 
+#NOTE deployer_return will never be populated
 if invoke:
     create_credentials()
     if deployer_return is not None:
@@ -224,17 +257,16 @@ if analyze:
 if keep_mode == KeepMode.KEEP_NONE:
     deployer_v2.delete_function(deployment_dict=deployment_dict)
 
-if baas_deploy:
-    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict["main_class"], deployment_dict["function_name"], deployment_dict["provider"]))
-    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"], deployment_dict["terraform_dir"], deployment_dict["aws_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
-    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"], deployment_dict["gcp_project"], deployment_dict["terraform_dir"], deployment_dict["gcp_code"], deployment_dict.get("old_analyser", False), deployment_dict['memory_configurations'])
-    arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
-    arn = arns[deployment_dict["function_name"]]
-    deployment_dict.update({"lambdaARN":arn})
-    with open(json_candidate, "w") as json_file:
-        json.dump(deployment_dict, json_file, indent=4)
 
 if baas_analyse:
+    with open ("./schemas/deploy_schema.json") as file:
+        build_schema = json.load(file)
+    try:
+        jsonschema.validate(deployment_dict, build_schema)
+
+    except jsonschema.exceptions.ValidationError as e:
+        sys.exit(f"Validation failed: {e.message}")
+
     if(deployment_dict.get("powertuner_setup", False)):
         print("setup (cloning repo and building statemachine) was already done\nIf it should be repeated change 'powertuner_setup' to False")
     else:
@@ -243,8 +275,8 @@ if baas_analyse:
         lambda_tuner.build_statemachine()
     lambda_tuner.fill_json(deployment_dict["lambdaARN"])
     lambda_tuner.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
-    with open(json_candidate, "w") as json_file:
+#safe the additions to the json file   
+with open(json_candidate, "w") as json_file:
         json.dump(deployment_dict, json_file, indent=4)
-
 
 

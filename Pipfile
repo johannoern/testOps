@@ -16,6 +16,8 @@ toml = "*"
 gitpython = "*"
 pytest = "*"
 pystache = "*"
+schemadict = "*"
+jsonschema = "*"
 
 [dev-packages]
 

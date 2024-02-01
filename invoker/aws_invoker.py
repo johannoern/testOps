@@ -16,7 +16,8 @@ import boto3
 
 class AWSInvoker(InvokerInterface):
 
-    def run_experiment(self, *, deployment_dict: Dict, payload: List, repetitions_of_experiment: int = 1, repetitions_per_function: int = 2, concurrency: int = 1, **kwargs) -> Dict:
+    def run_experiment(self, *, deployment_dict: dict, payload: list, repetitions_of_experiment: int = 1, repetitions_per_function: int = 2, concurrency: int = 1, **kwargs) -> Dict:
+        #LATER why both logging and print...
         logging.debug('AWS::Run Experiment')
         print('AWS::Run Experiment')
         if 'AWS_regions' in deployment_dict:
@@ -65,6 +66,7 @@ class AWSInvoker(InvokerInterface):
                         else:
                             dct.update({mem_config: result_list})
                             deployment_dict['AWS_regions'][region][experiment_str] = dct
+            #LATER why?
             print_neat_dict(deployment_dict)
         return deployment_dict
 

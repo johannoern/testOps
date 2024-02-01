@@ -19,8 +19,9 @@ class GCPInvoker(InvokerInterface):
     def __init__(self, *, gcp_project_id: str):
         self.__project_name = gcp_project_id
 
-    def run_experiment(self, *, deployment_dict: Dict, payload: List, repetitions_of_experiment: int = 1,
+    def run_experiment(self, *, deployment_dict: dict, payload: list, repetitions_of_experiment: int = 1,
                        repetitions_per_function: int = 2, concurrency: int = 1, **kwargs) -> Dict:
+        #LATER why both logging and print 
         logging.debug('GCP::Run Experiment')
         print('GCP::Run Experiment')
         if 'GCP_regions' in deployment_dict:

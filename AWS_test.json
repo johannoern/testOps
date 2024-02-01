@@ -1,24 +1,12 @@
 {
-    "old_analyser": true,
-    "name": "Powertuning",
-    "provider": [
-        "aws",
-        "gcp"
-    ],
-    "function_name": "main",
-    "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
-    "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
-    "memory_configurations": [
-        128,
-        256
-    ],
+	"old_analyser": true,
+	"name": "Powertuning",
+	"provider": ["aws", "gcp"],
+	"function_name": "main",
+	"project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
+	"main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
+	"memory_configurations":[128, 256],
     "gcp_project": "testproject-uibk",
-    "terraform_dir": "./terraform",
-    "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
-    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output_20240130_100159.zip",
-    "aws_handler": "org.example.AWSRequestHandler",
-    "gcp_handler": "org.example.AWSRequestHandler",
-    "aws_function_name": "handleRequest",
-    "gcp_function_name": "service",
-    "lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:main"
+
+	"terraform_dir": "./terraform"
 }

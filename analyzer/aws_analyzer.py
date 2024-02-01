@@ -1,3 +1,4 @@
+import json
 import logging
 from _decimal import Decimal
 from typing import Dict, List
@@ -36,10 +37,20 @@ class AWSAnalyzer(AnalyzerInterface):
                         current_invokations = deployment_dict['AWS_regions'][region].get(current_experiment).get(str(mem))
                         if current_invokations is None:
                             current_invokations = deployment_dict['AWS_regions'][region].get(current_experiment).get(mem)
-                        print(deployment_dict['AWS_regions'][region].get(current_experiment))
-                        print(mem, current_experiment, all_rtt, current_invokations)
-                        all_rtt.extend(current_invokations)
+                    #NOTE these prints are from the orig project not sure if they are really needed - probably only used in development
+                    #     print("-------------------NEW EXPERIMENT--------------------------")
+                    #     print(json.dumps(deployment_dict['AWS_regions'][region].get(current_experiment), indent=4, default=str))
+                    #     print("---------------------END EXPERIMENT------------------------------")
+                    #     print("mem:")
+                    #     print(mem)
+                    #     print("current_experiment:")
+                    #     print(current_experiment)
+                    #     print("current_invokations:")
+                    #     print(json.dumps(current_invokations, indent=4, default=str))
+                    #     all_rtt.extend(current_invokations)
 
+                    # print("all_rtt:")
+                    # print(json.dumps(all_rtt, indent=4, default=str))
                     current_mem_avg = self.__calculcate_average_time(all_rtt)
                     ET_avg = current_mem_avg - no_op_avg
                     name = 'AWS_' + region + '_MB' + str(mem)
