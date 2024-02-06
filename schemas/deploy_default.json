@@ -2,5 +2,9 @@
 	"old_analyser": false,
     "aws_region": "us-east-1",
     "gcp_region": "us-central1",
-	"terraform_dir": "./terraform"
+	"terraform_dir": "./terraform",
+    "provider": [
+        "aws",
+        "gcp"
+    ]
 }

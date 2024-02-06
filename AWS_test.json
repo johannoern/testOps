@@ -2,12 +2,7 @@
     "old_analyser": true,
     "aws_region": "us-east-1",
     "gcp_region": "us-central1",
-    "memory_configurations": [
-        128,
-        256
-    ],
     "terraform_dir": "./terraform",
-    "name": "Powertuning",
     "provider": [
         "aws",
         "gcp"
@@ -17,10 +12,9 @@
     "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
     "gcp_project_id": "testproject-uibk",
     "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
-    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output_20240201_193710.zip",
+    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output.zip",
     "aws_handler": "org.example.AWSRequestHandler",
     "gcp_handler": "org.example.AWSRequestHandler",
     "aws_function_name": "handleRequest",
-    "gcp_function_name": "service",
-    "lambdaARN": "arn:aws:lambda:us-east-1:650940819061:function:main"
+    "gcp_function_name": "service"
 }

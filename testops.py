@@ -5,14 +5,16 @@ from json import JSONDecodeError
 from os.path import exists
 import json
 from typing import Dict
+from Baas.deployer.aws_deployer_baas import AWS_deployer_baas
+from Baas.deployer.gcp_deployer_baas import GCP_deployer_baas
 
 from Gen_Utils import print_neat_dict, export_json_to_file, create_credentials
 from keep_mode import KeepMode
 import deployer_v2
 import invoker_v2
 import analyzer_v2
-from Baas import deployerBaas
-from Baas import aws_lambda_power_tuner as lambda_tuner
+import Baas.builder.builder_baas as builder_baas
+import Baas.deployer.deployer_baas as deployer_baas
 import logging
 
 
@@ -104,7 +106,7 @@ logging.basicConfig(filename='last_run.log', encoding='utf-8', level=logging.DEB
 
 json_candidate = None
 #NOTE analyse is written differently should be coherent ...
-deployment_dict = None
+deployment_dict:dict = None
 build = False
 deploy = False
 invoke = False
@@ -168,24 +170,38 @@ print_config()
 
 #LATER validations in separate function
 if build:
+    deployment_dict = populate_defaults("build_default.json", deployment_dict)
     validate_schema("build_schema.json", deployment_dict)    
-    deployment_dict.update(deployerBaas.build(deployment_dict["project_path"], deployment_dict["main_class"],
+    deployment_dict.update(builder_baas.build(deployment_dict["project_path"], deployment_dict["main_class"],
                                               deployment_dict["function_name"], deployment_dict["provider"]))
 
 if baas_deploy:
     deployment_dict = populate_defaults("deploy_default.json", deployment_dict)
     validate_schema("deploy_schema.json", deployment_dict)
-    deployerBaas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"],
-                                    deployment_dict["terraform_dir"], deployment_dict["old_analyser"],
-                                    deployment_dict['memory_configurations'], deployment_dict["aws_region"],
-                                    deployment_dict["aws_code"])
-    deployerBaas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"],
-                                    deployment_dict["gcp_project_id"], deployment_dict["terraform_dir"],
-                                    deployment_dict["old_analyser"], deployment_dict['memory_configurations'],
-                                    deployment_dict["gcp_region"], deployment_dict["gcp_code"])
-    arns = deployerBaas.terraform('apply', deployment_dict["terraform_dir"])
-    arn = arns[deployment_dict["function_name"]]
-    deployment_dict.update({"lambdaARN":arn})
+    providers = []
+    if "aws" in deployment_dict["provider"]:
+        providers.append(AWS_deployer_baas(deployment_dict["aws_handler"], deployment_dict["aws_code"],
+                                           deployment_dict["aws_region"]))
+    if "gcp" in deployment_dict["provider"]:
+        providers.append(GCP_deployer_baas(deployment_dict["gcp_handler"], deployment_dict["gcp_code"],
+                                           deployment_dict["gcp_region"], deployment_dict["gcp_project_id"]))
+    deployer_baas.deploy(deployment_dict["terraform_dir"], deployment_dict["function_name"], providers)
+    # deployer_baas.create_terraformfile(deployment_dict["terraform_dir"], deployment_dict["provider"])
+    # deployer_baas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"],
+    #                                 deployment_dict["terraform_dir"], deployment_dict["old_analyser"],
+    #                                  deployment_dict["aws_region"],
+    #                                 deployment_dict["aws_code"], deployment_dict.get('memory_configurations', None))
+    # deployer_baas.prepare_tfvars_gcp(deployment_dict["gcp_handler"], deployment_dict["function_name"],
+    #                                 deployment_dict["gcp_project_id"], deployment_dict["terraform_dir"],
+    #                                 deployment_dict["old_analyser"], deployment_dict["gcp_region"],
+    #                                 deployment_dict["gcp_code"], deployment_dict.get('memory_configurations', None),)
+    # arns = deployer_baas.terraform('apply', deployment_dict["terraform_dir"])
+    # try:
+    #     arn = arns[deployment_dict["function_name"]]
+    #     deployment_dict.update({"lambdaARN":arn})
+    # except KeyError:
+    #     print("analyse2 will not be possible, because old_analyser was set to True")
+
     with open(json_candidate, "w") as json_file:
         json.dump(deployment_dict, json_file, indent=4)
 
@@ -196,6 +212,7 @@ if deploy:
 
 #NOTE deployer_return will never be populated
 if invoke:
+    populate_defaults("invoke_default.json", deployment_dict)
     create_credentials()
     if deployer_return is not None:
         invoker_return = invoker_v2.run_experiment(deployer_return)
@@ -273,22 +290,23 @@ if keep_mode == KeepMode.KEEP_NONE:
 
 
 if baas_analyse:
-    with open ("./schemas/deploy_schema.json") as file:
-        build_schema = json.load(file)
-    try:
-        jsonschema.validate(deployment_dict, build_schema)
+    print("baas_analyse temporarily disabled")
+    # with open ("./schemas/deploy_schema.json") as file:
+    #     build_schema = json.load(file)
+    # try:
+    #     jsonschema.validate(deployment_dict, build_schema)
 
-    except jsonschema.exceptions.ValidationError as e:
-        sys.exit(f"Validation failed: {e.message}")
+    # except jsonschema.exceptions.ValidationError as e:
+    #     sys.exit(f"Validation failed: {e.message}")
 
-    if(deployment_dict.get("powertuner_setup", False)):
-        print("setup (cloning repo and building statemachine) was already done\nIf it should be repeated change 'powertuner_setup' to False")
-    else:
-        lambda_tuner.powertuner_setup()
-        deployment_dict.update(lambda_tuner.create_config_file(deployment_dict))
-        lambda_tuner.build_statemachine()
-    lambda_tuner.fill_json(deployment_dict["lambdaARN"])
-    lambda_tuner.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
+    # if(deployment_dict.get("powertuner_setup", False)):
+    #     print("setup (cloning repo and building statemachine) was already done\nIf it should be repeated change 'powertuner_setup' to False")
+    # else:
+    #     lambda_tuner.powertuner_setup()
+    #     deployment_dict.update(lambda_tuner.create_config_file(deployment_dict))
+    #     lambda_tuner.build_statemachine()
+    # lambda_tuner.fill_json(deployment_dict["lambdaARN"])
+    # lambda_tuner.execute_power_tuning(deployment_dict['function_name'], deployment_dict.get('stack_name', deployment_dict['name']))
 #safe the additions to the json file
 export_json_to_file(json_candidate, deployment_dict)
 

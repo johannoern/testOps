@@ -14,3 +14,8 @@ class InvokerInterface(ABC):
     def invoke_single_function(self, *, function_name: str, payload: Dict, region: str, **kwargs):
         '''runs a single instance of a cloud function'''
         pass
+
+    @abstractmethod
+    def get_status_code(response):
+        '''gets the status code from the response'''
+        pass

@@ -5,8 +5,15 @@
     "properties":{
         "function_name":{
             "type":"string",
-            "description":"name of the function, this name will also be used for the deployed function",
+            "description":"name of the function",
             "example": "main"
+        },
+        "provider":{
+            "type":"array",
+            "items": {
+                "type": "string",
+                "enum": ["aws", "gcp"]
+              }
         },
         "gcp_project_id":{
             "type":"string",

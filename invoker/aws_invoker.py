@@ -118,3 +118,6 @@ class AWSInvoker(InvokerInterface):
         res['response'] = response
         # execution_times[thread.name] = res
         return res
+
+    def get_status_code(self, response):
+        return response["StatusCode"]

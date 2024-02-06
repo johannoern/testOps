@@ -90,6 +90,8 @@ class GCPInvoker(InvokerInterface):
 
         url_adress = f'https://{region}-{self.__project_name}.cloudfunctions.net/{function_name}'
 
+        print(f"urls_adress: {url_adress}")
+
         creds = service_account.IDTokenCredentials.from_service_account_file(
             'google_credentials.json', target_audience=url_adress)
 
@@ -103,7 +105,9 @@ class GCPInvoker(InvokerInterface):
         response = authed_session.post(url_adress, json=payload)
         print("gcp response - TODO check if 200")
         print(response)
+        return response
 
+#LATER why is invoke_single_function not used as with the aws invoker
     def __invoker_timed(self, function_name: str, payload: Dict, region: str) -> Dict:
         res = {'execution_start_utc': datetime.now(timezone.utc)}
         thread = current_thread()
@@ -126,3 +130,6 @@ class GCPInvoker(InvokerInterface):
         res['status_code'] = response.status_code
         res['response'] = json.loads(response.content.decode('utf-8'))
         return res
+
+    def get_status_code(self, response):
+        return response.status_code     

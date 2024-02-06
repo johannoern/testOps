@@ -18,6 +18,8 @@ variable "project_name" {
   default = "Baas"
 }
 
+########### Lambda ###########
+
 variable "amazon" {
   type = object({
     function_src = string
@@ -31,8 +33,6 @@ variable "amazon" {
       }))
   })
 } 
-
-########### Lambda ###########
 
 resource "aws_iam_role" "iam_for_lambda"{
   name = "iam_for_lambda_${var.project_name}"
@@ -54,7 +54,7 @@ EOF
 }
   
 
-resource "aws_lambda_function" "test_lambda" {
+resource "aws_lambda_function" "test_subject" {
   for_each = {for func in var.amazon.functions : func.function_name => func}
 
   filename         = var.amazon.function_src
@@ -80,10 +80,8 @@ resource "aws_lambda_function" "no_op_function"{
 }
 
 output "lambda_arns" {
-  value = {for func in var.amazon.functions : func.function_name => aws_lambda_function.test_lambda[func.function_name].arn}
-}
-
-########### GCP ###########
+  value = {for func in var.amazon.functions : func.function_name => aws_lambda_function.test_subject[func.function_name].arn}
+}# ########### GCP ###########
 
 variable "gcp" {
   type = object({
@@ -129,7 +127,7 @@ resource "google_storage_bucket_object" "no_op" {
   source = "../Baas/templates/testOps_no_op.zip"
 }
 
-resource "google_cloudfunctions_function" "function" {
+resource "google_cloudfunctions_function" "test_subject" {
   for_each = {for func in var.gcp.functions : func.function_name => func}
 
   name        = each.value.function_name
@@ -161,14 +159,14 @@ resource "google_cloudfunctions_function" "no_op_function" {
 resource "google_cloudfunctions_function_iam_member" "invoker" {
   for_each = {for func in var.gcp.functions : func.function_name => func}
 
-  project        = google_cloudfunctions_function.function[each.key].project
-  region         = google_cloudfunctions_function.function[each.key].region
-  cloud_function = google_cloudfunctions_function.function[each.key].name
+  project        = google_cloudfunctions_function.test_subject[each.key].project
+  region         = google_cloudfunctions_function.test_subject[each.key].region
+  cloud_function = google_cloudfunctions_function.test_subject[each.key].name
 
   role   = "roles/cloudfunctions.invoker"
   member = "allUsers"
 }
 
 output "gcp_uris" {
-  value = {for func in var.gcp.functions : func.function_name => google_cloudfunctions_function.function[func.function_name].https_trigger_url}
+  value = {for func in var.gcp.functions : func.function_name => google_cloudfunctions_function.test_subject[func.function_name].https_trigger_url}
 }

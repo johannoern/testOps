@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import subprocess
 from typing import Dict, List
 from os.path import exists
 
@@ -14,6 +15,9 @@ def export_json_to_file(filename: str, json_data: Dict):
 def print_neat_dict(dict):
     print(json.dumps(dict, indent=4, default=str))
 
+
+def execute(command:str):
+    subprocess.check_call(command, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
 
 def create_credentials():
     if not exists('credentials.json'):

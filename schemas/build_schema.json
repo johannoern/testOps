@@ -1,18 +1,11 @@
 {
     "type":"object",
     "title": "testOps_build",
-    "required": ["provider", "function_name", "project_path", "main_class"],
+    "required": ["function_name", "project_path", "main_class"],
     "properties":{
-        "provider":{
-            "type":"array",
-            "items": {
-                "type": "string",
-                "enum": ["aws", "gcp"]
-              }
-        },
         "function_name":{
             "type":"string",
-            "description":"name of the function, this name will also be used for the deployed function",
+            "description":"name of the function, this will also be the name of the cloud function",
             "example": "main"
         },
         "project_path":{
@@ -24,6 +17,16 @@
             "type":"string",
             "description":"file containing the function/method to be deployed",
             "example": "C:/Users/User/Documents/ServerlessProject/src/main/java/org/example/ServerlessFunction.java"
+        },
+        "$comment": {
+            "description":"as default gcp and aws are deployed #TODO allow the deployment of only one provider programmatically"
+        },
+            "provider":{
+            "type":"array",
+            "items": {
+                "type": "string",
+                "enum": ["aws", "gcp"]
+              }
         }
     }
 }

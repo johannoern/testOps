@@ -1,9 +1,34 @@
-import json
-import re
+import zipfile
 import os
+import re
+import Gen_Utils
 import pystache
+import json
 
-#NOTE this class is not only used for aws and also it is not only used for deploy but also build - therefore a change in the class name would be good
+
+#project_path, main_class/aws_handler, function_name
+def build(project_path, main_class, function_name, provider):
+    aws_handler, aws_function_name, gcp_function_name = implement_handler(main_class, function_name, provider)
+
+#LATER it is possible to add a flag to skip the adaption
+#for example if shadow is used to make a fat jar the build file would be adapted without need
+    adapt_build_file(project_path, aws_handler)
+
+    command = f"cd {project_path} && .\\gradlew build"
+    Gen_Utils.execute(command)
+
+#LATER catch potential errors, also check how gradle builds are named
+    version = read_gradle_version(os.path.join(project_path, "build.gradle"))
+    jar_name = os.path.basename(project_path) + "-" + version + ".jar"
+    libs_path = os.path.join(project_path, "build", "libs")
+    jar_path = os.path.join(libs_path, jar_name).replace("\\","/")
+    
+    src_name = "output"
+    zip_path = os.path.join(libs_path, src_name + ".zip").replace("\\","/")
+    
+    with zipfile.ZipFile(zip_path, 'w') as zip_file:
+        zip_file.write(jar_path, arcname=os.path.basename(jar_path))
+    return {"aws_code": jar_path, "gcp_code":zip_path, "aws_handler": aws_handler, "gcp_handler": aws_handler, "aws_function_name": aws_function_name, "gcp_function_name": gcp_function_name}
 
 #NOTE if main hash has changed or does not exist handler has to be rewritten
 #TODO also if the Handler needed to change as the main_function changes that also has to return false - may be store the hash of the orig main
@@ -54,8 +79,28 @@ def implement_handler(main_class, function_name, provider: list):
     aws_handler = package + ".AWSRequestHandler"
     return aws_handler, aws_function_name, gcp_function_name
 
-#NOTE may be the changes have to be taken back before building for google and azure
-#mainly checking if fat jar is created - not pretty because it does not work if the jar task was already changed somehow
+def add_dependency(project_path, dependency_string):
+    build_file = os.path.join(project_path, 'build.gradle')
+
+    with open(build_file, 'r') as file:
+        build_gradle_content = file.read()
+
+    # Check if the dependency already exists in the build.gradle file
+    if dependency_string not in build_gradle_content:
+        print(f"adding {dependency_string} to build.gradle")
+        dependencies_index = build_gradle_content.find('dependencies {') + len('dependencies {')
+        modified_build_gradle_content = (
+            build_gradle_content[:dependencies_index] +
+            f"\n    {dependency_string}" +
+            build_gradle_content[dependencies_index:]
+        )
+
+        # Write the modified content back to the build.gradle file
+        with open(build_file, 'w') as file:
+            file.write(modified_build_gradle_content)
+    else:
+        print(f"{dependency_string} is already in build.gradle")
+
 def adaptation_needed(project_path):
     build_file = os.path.join(project_path, 'build.gradle')
     with open(build_file, 'r') as file:
@@ -79,28 +124,7 @@ def adapt_build_file(project_path, aws_handler):
         with open(build_file, 'a') as build_file:
             build_file.write(content)
 
-def add_dependency(project_path, dependency_string):
-    build_file = os.path.join(project_path, 'build.gradle')
-
-    with open(build_file, 'r') as file:
-        build_gradle_content = file.read()
-
-    # Check if the dependency already exists in the build.gradle file
-    if dependency_string not in build_gradle_content:
-        print(f"adding {dependency_string} to build.gradle")
-        dependencies_index = build_gradle_content.find('dependencies {') + len('dependencies {')
-        modified_build_gradle_content = (
-            build_gradle_content[:dependencies_index] +
-            f"\n    {dependency_string}" +
-            build_gradle_content[dependencies_index:]
-        )
-
-        # Write the modified content back to the build.gradle file
-        with open(build_file, 'w') as file:
-            file.write(modified_build_gradle_content)
-    else:
-        print(f"{dependency_string} is already in build.gradle")
-
+#gets information about the main_class and function
 def parse_main(main_class, function_name):
     with open(main_class, "r") as main_class:
         content = main_class.read()
@@ -112,3 +136,16 @@ def parse_main(main_class, function_name):
         inputs = function_match.group(2)
         return package, output_type, inputs
  
+
+def read_gradle_version(gradle_file_path):
+    with open(gradle_file_path, 'r') as file:
+        content = file.read()
+
+    # Use a regular expression to find the version pattern in the file content
+    version_match = re.search(r"version[\s=]+['\"]([^'\"]+)['\"]", content)
+
+    if version_match:
+        version = version_match.group(1)
+        return version
+    else:
+        raise ValueError("Version not found in the Gradle file")
