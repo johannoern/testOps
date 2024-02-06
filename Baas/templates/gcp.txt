@@ -1,0 +1,89 @@
+# ########### GCP ###########
+
+variable "gcp" {
+  type = object({
+    function_src = string,
+    project      = string,
+    region       = string,
+    functions    = list(
+      object({
+        function_name = string,
+        memory        = number,
+        handler       = string,
+        timeout       = number
+      })
+    )
+  })
+  default = {
+    function_src = ""
+    project      = ""
+    region       = "us-east1"
+    functions    = []
+  }
+}
+
+provider "google" {
+  project = var.gcp.project
+  region  = "us-central1"
+}
+
+resource "google_storage_bucket" "gcp_bucket" {
+  name     = "baas-jfops-bucket"
+  location = var.gcp.region
+}
+
+resource "google_storage_bucket_object" "jar" {
+  name   = "output.zip"
+  bucket = google_storage_bucket.gcp_bucket.name
+  source = var.gcp.function_src
+}
+
+resource "google_storage_bucket_object" "no_op" {
+  name   = "testOps_no_op.zip "
+  bucket = google_storage_bucket.gcp_bucket.name
+  source = "../Baas/templates/testOps_no_op.zip"
+}
+
+resource "google_cloudfunctions_function" "test_subject" {
+  for_each = {for func in var.gcp.functions : func.function_name => func}
+
+  name        = each.value.function_name
+  description = "jfOps Function"
+  runtime     = "java11"
+
+  available_memory_mb   = each.value.memory
+  timeout               = each.value.timeout
+  source_archive_bucket = google_storage_bucket.gcp_bucket.name
+  source_archive_object = google_storage_bucket_object.jar.name
+  trigger_http          = true
+  entry_point           = each.value.handler
+  max_instances         = 1
+}
+
+resource "google_cloudfunctions_function" "no_op_function" {
+  name        = "testOps_no_op_function"
+  runtime     = "python39"
+
+  available_memory_mb   = 256
+  timeout               = 3
+  source_archive_bucket = google_storage_bucket.gcp_bucket.name
+  source_archive_object = google_storage_bucket_object.no_op.name
+  trigger_http          = true
+  entry_point           = "entry_handler"
+  max_instances         = 1
+}
+
+resource "google_cloudfunctions_function_iam_member" "invoker" {
+  for_each = {for func in var.gcp.functions : func.function_name => func}
+
+  project        = google_cloudfunctions_function.test_subject[each.key].project
+  region         = google_cloudfunctions_function.test_subject[each.key].region
+  cloud_function = google_cloudfunctions_function.test_subject[each.key].name
+
+  role   = "roles/cloudfunctions.invoker"
+  member = "allUsers"
+}
+
+output "gcp_uris" {
+  value = {for func in var.gcp.functions : func.function_name => google_cloudfunctions_function.test_subject[func.function_name].https_trigger_url}
+}

@@ -1,0 +1,6 @@
+{
+    "aws_runtime": "java11",
+    "gcp_runtime": "java11",
+    "no_op_handler_aws": "lambda_function.lambda_handler",
+    "no_op_handler_gcp": "entry_handler"
+}
