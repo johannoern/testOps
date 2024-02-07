@@ -8,7 +8,7 @@ import com.google.cloud.functions.HttpResponse;
 import java.io.PrintWriter;
 import com.google.gson.Gson;{{/gcp}}
 
-public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}}, {{output_type}}>{{/aws}}, {{#gcp}}HttpFunction{{/gcp}} {
+public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}}, {{output_type}}>{{/aws}}{{#gcp}}{{#aws}},{{/aws}}{{/gcp}}{{#gcp}}HttpFunction{{/gcp}} {
     {{#aws}}
     @Override
     public {{output_type}} handleRequest({{input_type}} input, Context context) {

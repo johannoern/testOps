@@ -1,4 +1,6 @@
+from time import perf_counter
 from Baas.deployer.deployer_baas_interface import deployer_baas_interface
+from invoker.invoker_interface import InvokerInterface
 from .. import terraform
 import os
 
@@ -11,6 +13,8 @@ def deploy(terraform_dir, function_name, providers:list[deployer_baas_interface]
         provider.prepare_tfvars(function_name, terraform_dir, memory)
 
     #find mem values smallest biggest
+    for provider in providers:
+        provider.memory_calculation(terraform_dir, function_name)
 
     #deploy
     terraform.terraform('apply', terraform_dir)
@@ -32,7 +36,7 @@ def add_terraform_snippets(terraform_dir, provider):
         with open(os.path.join(template_path)) as provider:
             tf.write(provider.read())
 
-def deployed_mem(tf_state:dict, provider, memory_attribute)->[int]:
+def deployed_mem(tf_state:dict, provider, memory_attribute)->list[int]:
     mem_configs = []
     try:
         for resource in tf_state["resources"]:
@@ -43,3 +47,12 @@ def deployed_mem(tf_state:dict, provider, memory_attribute)->[int]:
         print(f"{provider}: No functions deployed using default")
     print(f"{provider} deployed mem: {mem_configs}")
     return mem_configs
+
+def invoke_function(function_name, region, invoker:InvokerInterface, memory):
+    name = f"{function_name}_{memory}MB"
+    print(f"invoking {name}")
+    invoker.invoke_single_function(function_name = name, payload = None, region = region)
+    start = perf_counter()
+    response = invoker.invoke_single_function(function_name = name, payload = None, region = region)
+    end = perf_counter()
+    return round((end - start)*1000), response

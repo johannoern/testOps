@@ -54,7 +54,7 @@ def update_tfvars(update:dict, terraform_dir, provider):
     tfvars[provider].update(update)
     write_tfvars(f"{terraform_dir}\\terraform.tfvars.json", tfvars)
 
-def tfvars_add_function(function_name, handler, memory, terraform_dir, provider):
+def tfvars_add_function(function_name, handler, memory, terraform_dir, provider:str):
     tfvars = get_tfvars(terraform_dir)
 
     print(f"adding function {provider} {memory}")
@@ -62,6 +62,16 @@ def tfvars_add_function(function_name, handler, memory, terraform_dir, provider)
     new_function = {"handler":handler, "function_name":f"{function_name}_{memory}MB", "memory":memory, "timeout": 3}
     if new_function not in functions:
         functions.append(new_function)
+    tfvars[provider].update({"functions":functions})
+    write_tfvars(f"{terraform_dir}\\terraform.tfvars.json", tfvars)
+
+def tfvars_delete_function(function_name, handler, memory, terraform_dir, provider:str):
+    tfvars = get_tfvars(terraform_dir)
+
+    print(f"deleting function {provider} {memory}")
+    functions: dict = tfvars[provider].get("functions", [])
+    old_function = {"handler":handler, "function_name":f"{function_name}_{memory}MB", "memory":memory, "timeout": 3}
+    functions.remove(old_function)
     tfvars[provider].update({"functions":functions})
     write_tfvars(f"{terraform_dir}\\terraform.tfvars.json", tfvars)
 
