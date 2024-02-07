@@ -1,5 +1,5 @@
 venv/
-terraform/.terraform/providers
+terraform/
 .idea/
 Baas/aws_lambda_power_tuning
 
