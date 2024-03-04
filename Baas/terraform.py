@@ -14,8 +14,8 @@ def terraform(command: str, terraform_dir):
         return
 
     if command =='apply':
-        print("terraform apply")
-        Gen_Utils.execute(f"cd {terraform_dir} && terraform apply")
+        print("terraform apply -auto-approve")
+        Gen_Utils.execute(f"cd {terraform_dir} && terraform apply -auto-approve", False)
         output = tf.output(capture_output = True)
         return output["lambda_arns"]["value"]
 
@@ -59,7 +59,7 @@ def tfvars_add_function(function_name, handler, memory, terraform_dir, provider:
 
     print(f"adding function {provider} {memory}")
     functions: dict = tfvars[provider].get("functions", [])
-    new_function = {"handler":handler, "function_name":f"{function_name}_{memory}MB", "memory":memory, "timeout": 3}
+    new_function = {"handler":handler, "function_name":f"{function_name}_{memory}MB", "memory":memory, "timeout": 520}
     if new_function not in functions:
         functions.append(new_function)
     tfvars[provider].update({"functions":functions})

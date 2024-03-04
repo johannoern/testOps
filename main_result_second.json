@@ -1,0 +1,2021 @@
+{
+    "old_analyser": true,
+    "aws_region": "us-east-1",
+    "gcp_region": "us-central1",
+    "terraform_dir": "./terraform",
+    "provider": [
+        "aws",
+        "gcp"
+    ],
+    "payload": [
+        {
+            "srcProvider": "aws",
+            "sourceBucketName": "testops-example",
+            "sourceKeyName": "test1KB.txt",
+            "sourceRegion": "us-east-1",
+            "destProvider": "aws",
+            "destBucketName": "testops-example",
+            "destKeyName": "test_file_new.txt",
+            "destRegion": "us-east-1",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "gcp",
+            "sourceBucketName": "testproject-jfops-bucket",
+            "sourceKeyName": "test1KB.txt",
+            "sourceRegion": "not needed",
+            "destProvider": "gcp",
+            "destBucketName": "testproject-jfops-bucket",
+            "destKeyName": "copy.txt",
+            "destRegion": "not needed",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "aws",
+            "sourceBucketName": "testops-example",
+            "sourceKeyName": "test10KB.txt",
+            "sourceRegion": "us-east-1",
+            "destProvider": "aws",
+            "destBucketName": "testops-example",
+            "destKeyName": "test_file_new.txt",
+            "destRegion": "us-east-1",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "gcp",
+            "sourceBucketName": "testproject-jfops-bucket",
+            "sourceKeyName": "test10KB.txt",
+            "sourceRegion": "not needed",
+            "destProvider": "gcp",
+            "destBucketName": "testproject-jfops-bucket",
+            "destKeyName": "copy.txt",
+            "destRegion": "not needed",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "aws",
+            "sourceBucketName": "testops-example",
+            "sourceKeyName": "test100KB.txt",
+            "sourceRegion": "us-east-1",
+            "destProvider": "aws",
+            "destBucketName": "testops-example",
+            "destKeyName": "test_file_new.txt",
+            "destRegion": "us-east-1",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "gcp",
+            "sourceBucketName": "testproject-jfops-bucket",
+            "sourceKeyName": "test100KB.txt",
+            "sourceRegion": "not needed",
+            "destProvider": "gcp",
+            "destBucketName": "testproject-jfops-bucket",
+            "destKeyName": "copy.txt",
+            "destRegion": "not needed",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        }
+    ],
+    "memory": [
+        128,
+        256,
+        512,
+        1024,
+        2048
+    ],
+    "function_name": "main",
+    "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
+    "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
+    "gcp_project_id": "testproject-uibk",
+    "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
+    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output2024-02-28_15-30-37.zip",
+    "aws_handler": "org.example.AWSRequestHandler",
+    "gcp_handler": "org.example.AWSRequestHandler",
+    "aws_function_name": "handleRequest",
+    "gcp_function_name": "service",
+    "GCP_regions": {
+        "us-central1": {
+            "memory_configurations": [
+                128,
+                256,
+                512,
+                1024,
+                2048
+            ],
+            "Experiment_0": {
+                "no_ops_function_0": {
+                    "execution_start_utc": "2024-02-28 20:48:25.721998+00:00",
+                    "execution_time": 1688,
+                    "execution_end_utc": "2024-02-28 20:48:27.410387+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_1": {
+                    "execution_start_utc": "2024-02-28 20:48:27.410387+00:00",
+                    "execution_time": 498,
+                    "execution_end_utc": "2024-02-28 20:48:27.908080+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_2": {
+                    "execution_start_utc": "2024-02-28 20:48:27.908080+00:00",
+                    "execution_time": 498,
+                    "execution_end_utc": "2024-02-28 20:48:28.406168+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_3": {
+                    "execution_start_utc": "2024-02-28 20:48:28.406168+00:00",
+                    "execution_time": 558,
+                    "execution_end_utc": "2024-02-28 20:48:28.963719+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_4": {
+                    "execution_start_utc": "2024-02-28 20:48:28.963719+00:00",
+                    "execution_time": 652,
+                    "execution_end_utc": "2024-02-28 20:48:29.616436+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "128": [],
+                "256": [],
+                "512": [],
+                "1024": [],
+                "2048": [],
+                "no_ops_function_5": {
+                    "execution_start_utc": "2024-02-28 18:52:36.784232+00:00",
+                    "execution_time": 502,
+                    "execution_end_utc": "2024-02-28 18:52:37.286565+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_6": {
+                    "execution_start_utc": "2024-02-28 18:52:37.286565+00:00",
+                    "execution_time": 478,
+                    "execution_end_utc": "2024-02-28 18:52:37.764381+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_7": {
+                    "execution_start_utc": "2024-02-28 18:52:37.764381+00:00",
+                    "execution_time": 492,
+                    "execution_end_utc": "2024-02-28 18:52:38.256304+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_8": {
+                    "execution_start_utc": "2024-02-28 18:52:38.256304+00:00",
+                    "execution_time": 536,
+                    "execution_end_utc": "2024-02-28 18:52:38.792611+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_9": {
+                    "execution_start_utc": "2024-02-28 18:52:38.792611+00:00",
+                    "execution_time": 490,
+                    "execution_end_utc": "2024-02-28 18:52:39.283250+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_10": {
+                    "execution_start_utc": "2024-02-28 18:52:39.283250+00:00",
+                    "execution_time": 501,
+                    "execution_end_utc": "2024-02-28 18:52:39.783917+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_11": {
+                    "execution_start_utc": "2024-02-28 18:52:39.783917+00:00",
+                    "execution_time": 528,
+                    "execution_end_utc": "2024-02-28 18:52:40.311366+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_12": {
+                    "execution_start_utc": "2024-02-28 18:52:40.311366+00:00",
+                    "execution_time": 477,
+                    "execution_end_utc": "2024-02-28 18:52:40.788622+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_13": {
+                    "execution_start_utc": "2024-02-28 18:52:40.788622+00:00",
+                    "execution_time": 545,
+                    "execution_end_utc": "2024-02-28 18:52:41.333853+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_14": {
+                    "execution_start_utc": "2024-02-28 18:52:41.333853+00:00",
+                    "execution_time": 486,
+                    "execution_end_utc": "2024-02-28 18:52:41.818974+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_15": {
+                    "execution_start_utc": "2024-02-28 18:52:41.818974+00:00",
+                    "execution_time": 472,
+                    "execution_end_utc": "2024-02-28 18:52:42.291600+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_16": {
+                    "execution_start_utc": "2024-02-28 18:52:42.291600+00:00",
+                    "execution_time": 488,
+                    "execution_end_utc": "2024-02-28 18:52:42.779185+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_17": {
+                    "execution_start_utc": "2024-02-28 18:52:42.779185+00:00",
+                    "execution_time": 480,
+                    "execution_end_utc": "2024-02-28 18:52:43.259948+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_18": {
+                    "execution_start_utc": "2024-02-28 18:52:43.259948+00:00",
+                    "execution_time": 512,
+                    "execution_end_utc": "2024-02-28 18:52:43.771058+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_19": {
+                    "execution_start_utc": "2024-02-28 18:52:43.771058+00:00",
+                    "execution_time": 508,
+                    "execution_end_utc": "2024-02-28 18:52:44.279348+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_20": {
+                    "execution_start_utc": "2024-02-28 18:52:44.279348+00:00",
+                    "execution_time": 503,
+                    "execution_end_utc": "2024-02-28 18:52:44.782860+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_21": {
+                    "execution_start_utc": "2024-02-28 18:52:44.782860+00:00",
+                    "execution_time": 519,
+                    "execution_end_utc": "2024-02-28 18:52:45.301959+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_22": {
+                    "execution_start_utc": "2024-02-28 18:52:45.301959+00:00",
+                    "execution_time": 496,
+                    "execution_end_utc": "2024-02-28 18:52:45.797813+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_23": {
+                    "execution_start_utc": "2024-02-28 18:52:45.797813+00:00",
+                    "execution_time": 496,
+                    "execution_end_utc": "2024-02-28 18:52:46.293512+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_24": {
+                    "execution_start_utc": "2024-02-28 18:52:46.293512+00:00",
+                    "execution_time": 477,
+                    "execution_end_utc": "2024-02-28 18:52:46.770789+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_25": {
+                    "execution_start_utc": "2024-02-28 18:52:46.770789+00:00",
+                    "execution_time": 533,
+                    "execution_end_utc": "2024-02-28 18:52:47.304216+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_26": {
+                    "execution_start_utc": "2024-02-28 18:52:47.304216+00:00",
+                    "execution_time": 482,
+                    "execution_end_utc": "2024-02-28 18:52:47.786436+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_27": {
+                    "execution_start_utc": "2024-02-28 18:52:47.786436+00:00",
+                    "execution_time": 508,
+                    "execution_end_utc": "2024-02-28 18:52:48.294431+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_28": {
+                    "execution_start_utc": "2024-02-28 18:52:48.294431+00:00",
+                    "execution_time": 497,
+                    "execution_end_utc": "2024-02-28 18:52:48.790891+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_29": {
+                    "execution_start_utc": "2024-02-28 18:52:48.790891+00:00",
+                    "execution_time": 508,
+                    "execution_end_utc": "2024-02-28 18:52:49.299625+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_30": {
+                    "execution_start_utc": "2024-02-28 18:52:49.299625+00:00",
+                    "execution_time": 509,
+                    "execution_end_utc": "2024-02-28 18:52:49.807899+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_31": {
+                    "execution_start_utc": "2024-02-28 18:52:49.807899+00:00",
+                    "execution_time": 484,
+                    "execution_end_utc": "2024-02-28 18:52:50.292306+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_32": {
+                    "execution_start_utc": "2024-02-28 18:52:50.292306+00:00",
+                    "execution_time": 521,
+                    "execution_end_utc": "2024-02-28 18:52:50.812689+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_33": {
+                    "execution_start_utc": "2024-02-28 18:52:50.812689+00:00",
+                    "execution_time": 491,
+                    "execution_end_utc": "2024-02-28 18:52:51.304545+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_34": {
+                    "execution_start_utc": "2024-02-28 18:52:51.304545+00:00",
+                    "execution_time": 479,
+                    "execution_end_utc": "2024-02-28 18:52:51.783176+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_35": {
+                    "execution_start_utc": "2024-02-28 18:52:51.783176+00:00",
+                    "execution_time": 479,
+                    "execution_end_utc": "2024-02-28 18:52:52.263062+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_36": {
+                    "execution_start_utc": "2024-02-28 18:52:52.263062+00:00",
+                    "execution_time": 492,
+                    "execution_end_utc": "2024-02-28 18:52:52.755188+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_37": {
+                    "execution_start_utc": "2024-02-28 18:52:52.755188+00:00",
+                    "execution_time": 527,
+                    "execution_end_utc": "2024-02-28 18:52:53.282309+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_38": {
+                    "execution_start_utc": "2024-02-28 18:52:53.282309+00:00",
+                    "execution_time": 478,
+                    "execution_end_utc": "2024-02-28 18:52:53.760464+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_39": {
+                    "execution_start_utc": "2024-02-28 18:52:53.760464+00:00",
+                    "execution_time": 506,
+                    "execution_end_utc": "2024-02-28 18:52:54.265563+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_40": {
+                    "execution_start_utc": "2024-02-28 18:52:54.265563+00:00",
+                    "execution_time": 559,
+                    "execution_end_utc": "2024-02-28 18:52:54.824507+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_41": {
+                    "execution_start_utc": "2024-02-28 18:52:54.824507+00:00",
+                    "execution_time": 1510,
+                    "execution_end_utc": "2024-02-28 18:52:56.334744+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_42": {
+                    "execution_start_utc": "2024-02-28 18:52:56.334744+00:00",
+                    "execution_time": 471,
+                    "execution_end_utc": "2024-02-28 18:52:56.806598+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_43": {
+                    "execution_start_utc": "2024-02-28 18:52:56.806598+00:00",
+                    "execution_time": 483,
+                    "execution_end_utc": "2024-02-28 18:52:57.289162+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_44": {
+                    "execution_start_utc": "2024-02-28 18:52:57.289162+00:00",
+                    "execution_time": 504,
+                    "execution_end_utc": "2024-02-28 18:52:57.792483+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_45": {
+                    "execution_start_utc": "2024-02-28 18:52:57.793466+00:00",
+                    "execution_time": 529,
+                    "execution_end_utc": "2024-02-28 18:52:58.321499+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_46": {
+                    "execution_start_utc": "2024-02-28 18:52:58.321499+00:00",
+                    "execution_time": 499,
+                    "execution_end_utc": "2024-02-28 18:52:58.820835+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_47": {
+                    "execution_start_utc": "2024-02-28 18:52:58.820835+00:00",
+                    "execution_time": 480,
+                    "execution_end_utc": "2024-02-28 18:52:59.300865+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_48": {
+                    "execution_start_utc": "2024-02-28 18:52:59.300865+00:00",
+                    "execution_time": 482,
+                    "execution_end_utc": "2024-02-28 18:52:59.783808+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_49": {
+                    "execution_start_utc": "2024-02-28 18:52:59.783808+00:00",
+                    "execution_time": 488,
+                    "execution_end_utc": "2024-02-28 18:53:00.272006+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "128": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:48:29.620445+00:00",
+                        "execution_time": 4699,
+                        "execution_end_utc": "2024-02-28 20:48:34.323019+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 4148,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.273,
+                            "downloadTime": 0.776
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:48:34.335914+00:00",
+                        "execution_time": 5229,
+                        "execution_end_utc": "2024-02-28 20:48:43.553373+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 4148,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.191,
+                            "downloadTime": 0.06
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:48:43.568421+00:00",
+                        "execution_time": 22886,
+                        "execution_end_utc": "2024-02-28 20:49:12.184935+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 4148,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.368,
+                            "downloadTime": 1.173
+                        }
+                    }
+                ],
+                "256": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:12.207168+00:00",
+                        "execution_time": 4584,
+                        "execution_end_utc": "2024-02-28 20:49:16.803894+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 17280,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.26,
+                            "downloadTime": 0.666
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:16.827076+00:00",
+                        "execution_time": 7663,
+                        "execution_end_utc": "2024-02-28 20:49:24.501268+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 17280,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 1.003,
+                            "downloadTime": 0.102
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:24.511262+00:00",
+                        "execution_time": 1983,
+                        "execution_end_utc": "2024-02-28 20:49:26.507985+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 17280,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.493,
+                            "downloadTime": 0.394
+                        }
+                    }
+                ],
+                "512": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:26.530710+00:00",
+                        "execution_time": 4738,
+                        "execution_end_utc": "2024-02-28 20:49:31.278191+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 16548,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.303,
+                            "downloadTime": 0.728
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:31.285185+00:00",
+                        "execution_time": 4022,
+                        "execution_end_utc": "2024-02-28 20:49:35.318269+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 16548,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.415,
+                            "downloadTime": 0.059
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:35.324943+00:00",
+                        "execution_time": 1377,
+                        "execution_end_utc": "2024-02-28 20:49:36.715633+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 16548,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.353,
+                            "downloadTime": 0.312
+                        }
+                    }
+                ],
+                "1024": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:36.739079+00:00",
+                        "execution_time": 13052,
+                        "execution_end_utc": "2024-02-28 20:49:49.806514+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 8620,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.429,
+                            "downloadTime": 1.78
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:49.827849+00:00",
+                        "execution_time": 2459,
+                        "execution_end_utc": "2024-02-28 20:49:52.301449+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 8620,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.26,
+                            "downloadTime": 0.048
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:52.309818+00:00",
+                        "execution_time": 1082,
+                        "execution_end_utc": "2024-02-28 20:49:53.405675+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 8620,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.222,
+                            "downloadTime": 0.17
+                        }
+                    }
+                ],
+                "2048": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:49:53.426496+00:00",
+                        "execution_time": 10801,
+                        "execution_end_utc": "2024-02-28 20:50:04.241655+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 8032,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.364,
+                            "downloadTime": 0.937
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:50:04.261748+00:00",
+                        "execution_time": 2001,
+                        "execution_end_utc": "2024-02-28 20:50:06.276738+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 8032,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.165,
+                            "downloadTime": 0.055
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:50:06.289642+00:00",
+                        "execution_time": 1154,
+                        "execution_end_utc": "2024-02-28 20:50:07.451952+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 8032,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.23,
+                            "downloadTime": 0.206
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "AWS_regions": {
+        "us-east-1": {
+            "memory_configurations": [
+                128,
+                256,
+                512,
+                1024,
+                2048
+            ],
+            "Experiment_0": {
+                "no_ops_function_0": {
+                    "execution_start_utc": "2024-02-28 20:50:07.487928+00:00",
+                    "execution_time": 1286,
+                    "execution_end_utc": "2024-02-28 20:50:08.773383+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_1": {
+                    "execution_start_utc": "2024-02-28 20:50:08.773383+00:00",
+                    "execution_time": 1033,
+                    "execution_end_utc": "2024-02-28 20:50:09.806659+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_2": {
+                    "execution_start_utc": "2024-02-28 20:50:09.806659+00:00",
+                    "execution_time": 1002,
+                    "execution_end_utc": "2024-02-28 20:50:10.808026+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_3": {
+                    "execution_start_utc": "2024-02-28 20:50:10.808026+00:00",
+                    "execution_time": 952,
+                    "execution_end_utc": "2024-02-28 20:50:11.760190+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_4": {
+                    "execution_start_utc": "2024-02-28 20:50:11.760190+00:00",
+                    "execution_time": 1081,
+                    "execution_end_utc": "2024-02-28 20:50:12.841709+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "128": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:37:56.663338+00:00",
+                        "execution_time": 38798,
+                        "execution_end_utc": "2024-02-28 20:38:35.462120+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 4532,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "f87f0fff-7b42-42ff-b762-84d39b600110",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:38:36 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "146",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "f87f0fff-7b42-42ff-b762-84d39b600110",
+                                    "x-amz-function-error": "Unhandled",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df99a6-3a6e20344111789f75423a26;parent=4de5c68290d585ca;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "FunctionError": "Unhandled",
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "errorType": "Runtime.ExitError",
+                                "errorMessage": "RequestId: f87f0fff-7b42-42ff-b762-84d39b600110 Error: Runtime exited with error: exit status 1"
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:38:35.476099+00:00",
+                        "execution_time": 42943,
+                        "execution_end_utc": "2024-02-28 20:39:18.418776+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 4532,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "ecb1a3f6-dfdf-4d01-bb99-271a37f7a7c4",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:19 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "ecb1a3f6-dfdf-4d01-bb99-271a37f7a7c4",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df99cd-4d3a90ce28cbd1f0274f1280;parent=35318ceafe0927e1;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 3.057,
+                                "downloadTime": 0.441
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:18.436308+00:00",
+                        "execution_time": 4254,
+                        "execution_end_utc": "2024-02-28 20:39:22.690550+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 4532,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "dce010a1-5309-4a71-b593-474d3e606c3c",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:23 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "593",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "dce010a1-5309-4a71-b593-474d3e606c3c",
+                                    "x-amz-function-error": "Unhandled",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df99f8-1d3d5e095d630cb27f96cb4f;parent=212df607b4ed0d5f;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "FunctionError": "Unhandled",
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "errorMessage": "Metaspace",
+                                "errorType": "java.lang.OutOfMemoryError",
+                                "stackTrace": [
+                                    "java.base/java.lang.ClassLoader.defineClass1(Native Method)",
+                                    "java.base/java.lang.ClassLoader.defineClass(Unknown Source)",
+                                    "java.base/java.security.SecureClassLoader.defineClass(Unknown Source)",
+                                    "java.base/java.net.URLClassLoader.defineClass(Unknown Source)",
+                                    "java.base/java.net.URLClassLoader$1.run(Unknown Source)",
+                                    "java.base/java.net.URLClassLoader$1.run(Unknown Source)",
+                                    "java.base/java.security.AccessController.doPrivileged(Native Method)",
+                                    "java.base/java.net.URLClassLoader.findClass(Unknown Source)"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "256": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:22.729948+00:00",
+                        "execution_time": 2273,
+                        "execution_end_utc": "2024-02-28 20:39:25.003974+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 12948,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "d62a8d1b-baeb-496d-87fb-54ce00acf8db",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:26 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "d62a8d1b-baeb-496d-87fb-54ce00acf8db",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df99fd-67633c023514683c75b36f69;parent=60c56852a3658401;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.407,
+                                "downloadTime": 0.369
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:25.020043+00:00",
+                        "execution_time": 2799,
+                        "execution_end_utc": "2024-02-28 20:39:27.818801+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 12948,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "b6df7475-2ff7-458b-971b-6da81c391265",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:29 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "b6df7475-2ff7-458b-971b-6da81c391265",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df99ff-48a51aee2649be397d903a75;parent=32dcfafc27e7e5b7;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.441,
+                                "downloadTime": 0.059
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:27.836828+00:00",
+                        "execution_time": 2312,
+                        "execution_end_utc": "2024-02-28 20:39:30.150003+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 12948,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "afd28d17-7e18-4351-af99-3ab6c74c7ea2",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:31 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "afd28d17-7e18-4351-af99-3ab6c74c7ea2",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a02-7a3007621ce6d3c148cef62b;parent=6161804e0541198a;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.402,
+                                "downloadTime": 0.361
+                            }
+                        }
+                    }
+                ],
+                "512": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:30.176001+00:00",
+                        "execution_time": 1579,
+                        "execution_end_utc": "2024-02-28 20:39:31.755404+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 4168,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "6663f885-75e9-4719-a513-9c177f580107",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:33 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "6663f885-75e9-4719-a513-9c177f580107",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a04-57b2199b16c340603332a42c;parent=64e5e9763ca718db;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.141,
+                                "downloadTime": 0.138
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:31.771225+00:00",
+                        "execution_time": 1846,
+                        "execution_end_utc": "2024-02-28 20:39:33.617577+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 4168,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "3759fcbc-5384-47f5-b839-c21102d01a81",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:34 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "39",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "3759fcbc-5384-47f5-b839-c21102d01a81",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a06-51c8a0ec160c632d1a541062;parent=2f19b60d50506e5d;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.2,
+                                "downloadTime": 0.061
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:33.637376+00:00",
+                        "execution_time": 1800,
+                        "execution_end_utc": "2024-02-28 20:39:35.438588+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 4168,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "25ef9035-fc14-4709-b004-3a6789f748bc",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:36 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "25ef9035-fc14-4709-b004-3a6789f748bc",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a08-1efcee61776146f173061a16;parent=4cc59507f2a4d2a4;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.145,
+                                "downloadTime": 0.343
+                            }
+                        }
+                    }
+                ],
+                "1024": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:35.472106+00:00",
+                        "execution_time": 1324,
+                        "execution_end_utc": "2024-02-28 20:39:36.796917+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 17880,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "8650fb14-fdfd-4497-94ed-03425aec83c9",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:38 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "8650fb14-fdfd-4497-94ed-03425aec83c9",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a09-10fea12d7cc7bda11bfa327c;parent=5fe99f4b32c6937e;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.14,
+                                "downloadTime": 0.091
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:36.809174+00:00",
+                        "execution_time": 1499,
+                        "execution_end_utc": "2024-02-28 20:39:38.308629+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 17880,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "fc9651bb-19cd-464f-a432-5625e87d5916",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:39 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "fc9651bb-19cd-464f-a432-5625e87d5916",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a0b-3b4c5989485b1a562aa20731;parent=60b0e29cb601dfa0;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.15,
+                                "downloadTime": 0.078
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:38.316629+00:00",
+                        "execution_time": 1852,
+                        "execution_end_utc": "2024-02-28 20:39:40.169279+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 17880,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "aa1ebdf9-dccd-480e-b824-dc49aeb1bcee",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:41 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "aa1ebdf9-dccd-480e-b824-dc49aeb1bcee",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a0d-3b266ccb665b251d22e99570;parent=76f8b367efea3898;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.119,
+                                "downloadTime": 0.079
+                            }
+                        }
+                    }
+                ],
+                "2048": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:40.197652+00:00",
+                        "execution_time": 1469,
+                        "execution_end_utc": "2024-02-28 20:39:41.667283+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 7836,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "6a3a8b83-6233-4462-a424-8f34c1893207",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:43 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "6a3a8b83-6233-4462-a424-8f34c1893207",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a0e-490a34c159cf756d3fa53946;parent=0ee5e4a7737eeca2;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.095,
+                                "downloadTime": 0.18
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:41.679152+00:00",
+                        "execution_time": 1693,
+                        "execution_end_utc": "2024-02-28 20:39:43.373073+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 7836,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "7fa0cd7a-17e9-4069-ad73-ff1865a1d7cf",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:44 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "7fa0cd7a-17e9-4069-ad73-ff1865a1d7cf",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a10-471b7bd21de3dab17e40bb06;parent=7654e7a9c4beef10;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.127,
+                                "downloadTime": 0.067
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:39:43.385073+00:00",
+                        "execution_time": 1556,
+                        "execution_end_utc": "2024-02-28 20:39:44.941062+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 7836,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "2e2925c5-71bb-4312-848a-567c92c441fd",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:39:46 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "2e2925c5-71bb-4312-848a-567c92c441fd",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9a11-6652174b274ed079498e54c7;parent=5728359327b79036;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.087,
+                                "downloadTime": 0.126
+                            }
+                        }
+                    }
+                ],
+                "no_ops_function_5": {
+                    "execution_start_utc": "2024-02-28 20:26:10.840178+00:00",
+                    "execution_time": 1835,
+                    "execution_end_utc": "2024-02-28 20:26:12.674931+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_6": {
+                    "execution_start_utc": "2024-02-28 20:26:12.674931+00:00",
+                    "execution_time": 1913,
+                    "execution_end_utc": "2024-02-28 20:26:14.588433+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_7": {
+                    "execution_start_utc": "2024-02-28 20:26:14.588433+00:00",
+                    "execution_time": 2009,
+                    "execution_end_utc": "2024-02-28 20:26:16.597455+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_8": {
+                    "execution_start_utc": "2024-02-28 20:26:16.597455+00:00",
+                    "execution_time": 1990,
+                    "execution_end_utc": "2024-02-28 20:26:18.586812+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_9": {
+                    "execution_start_utc": "2024-02-28 20:26:18.586812+00:00",
+                    "execution_time": 2189,
+                    "execution_end_utc": "2024-02-28 20:26:20.776239+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_10": {
+                    "execution_start_utc": "2024-02-28 20:26:20.776239+00:00",
+                    "execution_time": 2153,
+                    "execution_end_utc": "2024-02-28 20:26:22.928306+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_11": {
+                    "execution_start_utc": "2024-02-28 20:26:22.928306+00:00",
+                    "execution_time": 2185,
+                    "execution_end_utc": "2024-02-28 20:26:25.112726+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_12": {
+                    "execution_start_utc": "2024-02-28 20:26:25.112726+00:00",
+                    "execution_time": 2083,
+                    "execution_end_utc": "2024-02-28 20:26:27.196493+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_13": {
+                    "execution_start_utc": "2024-02-28 20:26:27.196493+00:00",
+                    "execution_time": 2295,
+                    "execution_end_utc": "2024-02-28 20:26:29.491288+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_14": {
+                    "execution_start_utc": "2024-02-28 20:26:29.491288+00:00",
+                    "execution_time": 6307,
+                    "execution_end_utc": "2024-02-28 20:26:35.799352+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_15": {
+                    "execution_start_utc": "2024-02-28 20:26:35.799366+00:00",
+                    "execution_time": 6897,
+                    "execution_end_utc": "2024-02-28 20:26:42.695659+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_16": {
+                    "execution_start_utc": "2024-02-28 20:26:42.695659+00:00",
+                    "execution_time": 3424,
+                    "execution_end_utc": "2024-02-28 20:26:46.119749+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_17": {
+                    "execution_start_utc": "2024-02-28 20:26:46.119749+00:00",
+                    "execution_time": 3192,
+                    "execution_end_utc": "2024-02-28 20:26:49.311960+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_18": {
+                    "execution_start_utc": "2024-02-28 20:26:49.311960+00:00",
+                    "execution_time": 2425,
+                    "execution_end_utc": "2024-02-28 20:26:51.737657+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_19": {
+                    "execution_start_utc": "2024-02-28 20:26:51.737657+00:00",
+                    "execution_time": 1746,
+                    "execution_end_utc": "2024-02-28 20:26:53.483131+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_20": {
+                    "execution_start_utc": "2024-02-28 20:26:53.483131+00:00",
+                    "execution_time": 996,
+                    "execution_end_utc": "2024-02-28 20:26:54.478897+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_21": {
+                    "execution_start_utc": "2024-02-28 20:26:54.478897+00:00",
+                    "execution_time": 1911,
+                    "execution_end_utc": "2024-02-28 20:26:56.390167+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_22": {
+                    "execution_start_utc": "2024-02-28 20:26:56.390167+00:00",
+                    "execution_time": 1052,
+                    "execution_end_utc": "2024-02-28 20:26:57.441782+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_23": {
+                    "execution_start_utc": "2024-02-28 20:26:57.441782+00:00",
+                    "execution_time": 998,
+                    "execution_end_utc": "2024-02-28 20:26:58.439919+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_24": {
+                    "execution_start_utc": "2024-02-28 20:26:58.439919+00:00",
+                    "execution_time": 1353,
+                    "execution_end_utc": "2024-02-28 20:26:59.792280+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_25": {
+                    "execution_start_utc": "2024-02-28 20:26:59.792280+00:00",
+                    "execution_time": 1747,
+                    "execution_end_utc": "2024-02-28 20:27:01.539890+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_26": {
+                    "execution_start_utc": "2024-02-28 20:27:01.539890+00:00",
+                    "execution_time": 1089,
+                    "execution_end_utc": "2024-02-28 20:27:02.628394+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_27": {
+                    "execution_start_utc": "2024-02-28 20:27:02.628394+00:00",
+                    "execution_time": 1283,
+                    "execution_end_utc": "2024-02-28 20:27:03.911683+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_28": {
+                    "execution_start_utc": "2024-02-28 20:27:03.911683+00:00",
+                    "execution_time": 1860,
+                    "execution_end_utc": "2024-02-28 20:27:05.771882+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_29": {
+                    "execution_start_utc": "2024-02-28 20:27:05.771882+00:00",
+                    "execution_time": 1434,
+                    "execution_end_utc": "2024-02-28 20:27:07.205412+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_30": {
+                    "execution_start_utc": "2024-02-28 20:27:07.205412+00:00",
+                    "execution_time": 1027,
+                    "execution_end_utc": "2024-02-28 20:27:08.232294+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_31": {
+                    "execution_start_utc": "2024-02-28 20:27:08.232294+00:00",
+                    "execution_time": 1733,
+                    "execution_end_utc": "2024-02-28 20:27:09.965884+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_32": {
+                    "execution_start_utc": "2024-02-28 20:27:09.965884+00:00",
+                    "execution_time": 1877,
+                    "execution_end_utc": "2024-02-28 20:27:11.842738+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_33": {
+                    "execution_start_utc": "2024-02-28 20:27:11.842738+00:00",
+                    "execution_time": 1005,
+                    "execution_end_utc": "2024-02-28 20:27:12.848568+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_34": {
+                    "execution_start_utc": "2024-02-28 20:27:12.848568+00:00",
+                    "execution_time": 1365,
+                    "execution_end_utc": "2024-02-28 20:27:14.213500+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_35": {
+                    "execution_start_utc": "2024-02-28 20:27:14.213500+00:00",
+                    "execution_time": 2191,
+                    "execution_end_utc": "2024-02-28 20:27:16.403414+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_36": {
+                    "execution_start_utc": "2024-02-28 20:27:16.403414+00:00",
+                    "execution_time": 1124,
+                    "execution_end_utc": "2024-02-28 20:27:17.527774+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_37": {
+                    "execution_start_utc": "2024-02-28 20:27:17.527774+00:00",
+                    "execution_time": 2365,
+                    "execution_end_utc": "2024-02-28 20:27:19.892670+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_38": {
+                    "execution_start_utc": "2024-02-28 20:27:19.892670+00:00",
+                    "execution_time": 2863,
+                    "execution_end_utc": "2024-02-28 20:27:22.755375+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_39": {
+                    "execution_start_utc": "2024-02-28 20:27:22.755375+00:00",
+                    "execution_time": 2922,
+                    "execution_end_utc": "2024-02-28 20:27:25.677902+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_40": {
+                    "execution_start_utc": "2024-02-28 20:27:25.677902+00:00",
+                    "execution_time": 2998,
+                    "execution_end_utc": "2024-02-28 20:27:28.675919+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_41": {
+                    "execution_start_utc": "2024-02-28 20:27:28.675919+00:00",
+                    "execution_time": 1067,
+                    "execution_end_utc": "2024-02-28 20:27:29.743023+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_42": {
+                    "execution_start_utc": "2024-02-28 20:27:29.743023+00:00",
+                    "execution_time": 2258,
+                    "execution_end_utc": "2024-02-28 20:27:32.001620+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_43": {
+                    "execution_start_utc": "2024-02-28 20:27:32.001620+00:00",
+                    "execution_time": 2103,
+                    "execution_end_utc": "2024-02-28 20:27:34.104885+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_44": {
+                    "execution_start_utc": "2024-02-28 20:27:34.104885+00:00",
+                    "execution_time": 1700,
+                    "execution_end_utc": "2024-02-28 20:27:35.804421+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_45": {
+                    "execution_start_utc": "2024-02-28 20:27:35.804421+00:00",
+                    "execution_time": 1177,
+                    "execution_end_utc": "2024-02-28 20:27:36.980511+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_46": {
+                    "execution_start_utc": "2024-02-28 20:27:36.980511+00:00",
+                    "execution_time": 1770,
+                    "execution_end_utc": "2024-02-28 20:27:38.750188+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_47": {
+                    "execution_start_utc": "2024-02-28 20:27:38.750188+00:00",
+                    "execution_time": 4081,
+                    "execution_end_utc": "2024-02-28 20:27:42.830899+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_48": {
+                    "execution_start_utc": "2024-02-28 20:27:42.830899+00:00",
+                    "execution_time": 4004,
+                    "execution_end_utc": "2024-02-28 20:27:46.836065+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_49": {
+                    "execution_start_utc": "2024-02-28 20:27:46.836065+00:00",
+                    "execution_time": 1702,
+                    "execution_end_utc": "2024-02-28 20:27:48.537830+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "128": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:50:12.859697+00:00",
+                        "execution_time": 38831,
+                        "execution_end_utc": "2024-02-28 20:50:51.690972+00:00",
+                        "thread_name": "ThreadPoolExecutor-5_0",
+                        "thread_ident": 19444,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "4bb7564b-e801-4454-861e-6059596033f7",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:50:53 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "146",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "4bb7564b-e801-4454-861e-6059596033f7",
+                                    "x-amz-function-error": "Unhandled",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9c87-0d992352504f505112fec818;parent=4997f6701a1ababf;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "FunctionError": "Unhandled",
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "errorType": "Runtime.ExitError",
+                                "errorMessage": "RequestId: 4bb7564b-e801-4454-861e-6059596033f7 Error: Runtime exited with error: exit status 1"
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:50:51.703595+00:00",
+                        "execution_time": 43469,
+                        "execution_end_utc": "2024-02-28 20:51:35.172772+00:00",
+                        "thread_name": "ThreadPoolExecutor-5_0",
+                        "thread_ident": 19444,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "4cdc34c8-7c97-470e-a577-abe2e14d3e8f",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:51:36 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "4cdc34c8-7c97-470e-a577-abe2e14d3e8f",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9cae-4293d84c49476d7e2f176001;parent=24c3bad5afea6329;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 2.191,
+                                "downloadTime": 0.34
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:51:35.192457+00:00",
+                        "execution_time": 3623,
+                        "execution_end_utc": "2024-02-28 20:51:38.817381+00:00",
+                        "thread_name": "ThreadPoolExecutor-5_0",
+                        "thread_ident": 19444,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "db870c76-6fe3-451d-864b-91e78414885f",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:51:40 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "593",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "db870c76-6fe3-451d-864b-91e78414885f",
+                                    "x-amz-function-error": "Unhandled",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9cd9-70a4d7690859bad300ba312b;parent=2b25a1aab00a0333;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "FunctionError": "Unhandled",
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "errorMessage": "Metaspace",
+                                "errorType": "java.lang.OutOfMemoryError",
+                                "stackTrace": [
+                                    "java.base/java.lang.ClassLoader.defineClass1(Native Method)",
+                                    "java.base/java.lang.ClassLoader.defineClass(Unknown Source)",
+                                    "java.base/java.security.SecureClassLoader.defineClass(Unknown Source)",
+                                    "java.base/java.net.URLClassLoader.defineClass(Unknown Source)",
+                                    "java.base/java.net.URLClassLoader$1.run(Unknown Source)",
+                                    "java.base/java.net.URLClassLoader$1.run(Unknown Source)",
+                                    "java.base/java.security.AccessController.doPrivileged(Native Method)",
+                                    "java.base/java.net.URLClassLoader.findClass(Unknown Source)"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "256": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:51:38.837185+00:00",
+                        "execution_time": 32726,
+                        "execution_end_utc": "2024-02-28 20:52:11.563945+00:00",
+                        "thread_name": "ThreadPoolExecutor-6_0",
+                        "thread_ident": 17700,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "cb9c96a4-afe8-4cad-b80c-f741303e6dfd",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:52:12 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "cb9c96a4-afe8-4cad-b80c-f741303e6dfd",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9cdd-52b187880c78d0ea45c2b06c;parent=7e564f596831f86a;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 2.841,
+                                "downloadTime": 9.76
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:52:11.575944+00:00",
+                        "execution_time": 13686,
+                        "execution_end_utc": "2024-02-28 20:52:25.262140+00:00",
+                        "thread_name": "ThreadPoolExecutor-6_0",
+                        "thread_ident": 17700,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "b5bb6fc6-e939-4d3e-a0ed-82b7472fcb4f",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:52:26 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "b5bb6fc6-e939-4d3e-a0ed-82b7472fcb4f",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9cfe-2af9ead47265a5ea58441135;parent=320450a815fb8e8c;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.583,
+                                "downloadTime": 0.087
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:52:25.275500+00:00",
+                        "execution_time": 2552,
+                        "execution_end_utc": "2024-02-28 20:52:27.827452+00:00",
+                        "thread_name": "ThreadPoolExecutor-6_0",
+                        "thread_ident": 17700,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "900ff233-c067-43ad-87a4-8d041223dfbd",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:52:29 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "900ff233-c067-43ad-87a4-8d041223dfbd",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d0b-4f96124153effed355926ceb;parent=7d0e0b58ba57a288;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.659,
+                                "downloadTime": 0.376
+                            }
+                        }
+                    }
+                ],
+                "512": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:52:27.847356+00:00",
+                        "execution_time": 17070,
+                        "execution_end_utc": "2024-02-28 20:52:44.918699+00:00",
+                        "thread_name": "ThreadPoolExecutor-7_0",
+                        "thread_ident": 14108,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "28c5d988-0b5c-4700-b3d8-43d949ee1cda",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:52:46 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "28c5d988-0b5c-4700-b3d8-43d949ee1cda",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d0e-2c20893065c04bee1991afd8;parent=5724adf9e1ed8df1;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 1.32,
+                                "downloadTime": 5.519
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:52:44.935739+00:00",
+                        "execution_time": 5846,
+                        "execution_end_utc": "2024-02-28 20:52:50.782278+00:00",
+                        "thread_name": "ThreadPoolExecutor-7_0",
+                        "thread_ident": 14108,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "85d4057d-1311-48d8-b5ae-c25c29dacd4f",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:52:52 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "85d4057d-1311-48d8-b5ae-c25c29dacd4f",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d1f-5346258e7406903243a55efc;parent=1d445c4cfae134b2;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.288,
+                                "downloadTime": 0.096
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:52:50.794553+00:00",
+                        "execution_time": 2034,
+                        "execution_end_utc": "2024-02-28 20:52:52.829698+00:00",
+                        "thread_name": "ThreadPoolExecutor-7_0",
+                        "thread_ident": 14108,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "3f754f34-8c53-4ef1-9f4e-697f49a7e975",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:52:54 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "40",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "3f754f34-8c53-4ef1-9f4e-697f49a7e975",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d25-41b8ad9034e3030e2c5d7f9e;parent=41eaa3809d3b7817;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.319,
+                                "downloadTime": 0.21
+                            }
+                        }
+                    }
+                ],
+                "1024": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:52:52.860924+00:00",
+                        "execution_time": 9097,
+                        "execution_end_utc": "2024-02-28 20:53:01.959102+00:00",
+                        "thread_name": "ThreadPoolExecutor-8_0",
+                        "thread_ident": 12840,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "c5076a49-4676-4c3d-b5cf-85846c299f17",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:53:03 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "c5076a49-4676-4c3d-b5cf-85846c299f17",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d27-7a39a44b2164bdf34522aee4;parent=0313f1209cb7802e;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.683,
+                                "downloadTime": 2.617
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:53:01.974363+00:00",
+                        "execution_time": 3798,
+                        "execution_end_utc": "2024-02-28 20:53:05.773425+00:00",
+                        "thread_name": "ThreadPoolExecutor-8_0",
+                        "thread_ident": 12840,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "1469bcf5-c5b7-48a6-a7f2-c76c882b396a",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:53:07 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "1469bcf5-c5b7-48a6-a7f2-c76c882b396a",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d30-5586657b39b1b59957955354;parent=6bf3a3a0154e70fe;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.175,
+                                "downloadTime": 0.072
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:53:05.785470+00:00",
+                        "execution_time": 1453,
+                        "execution_end_utc": "2024-02-28 20:53:07.238628+00:00",
+                        "thread_name": "ThreadPoolExecutor-8_0",
+                        "thread_ident": 12840,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "1c19b0ca-7163-4bb1-ae3b-7f9c064f4d25",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:53:08 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "1c19b0ca-7163-4bb1-ae3b-7f9c064f4d25",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d34-41b9b9805f41566b41b6102e;parent=34ea4916c5c47a5d;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.182,
+                                "downloadTime": 0.134
+                            }
+                        }
+                    }
+                ],
+                "2048": [
+                    {
+                        "execution_start_utc": "2024-02-28 20:53:07.258009+00:00",
+                        "execution_time": 6200,
+                        "execution_end_utc": "2024-02-28 20:53:13.459419+00:00",
+                        "thread_name": "ThreadPoolExecutor-9_0",
+                        "thread_ident": 17052,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "8a032ac5-22fe-42e1-a7c6-1ff463827e51",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:53:14 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "8a032ac5-22fe-42e1-a7c6-1ff463827e51",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d35-7cb2706f67dd8237397ce803;parent=05c1f3539479d797;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.264,
+                                "downloadTime": 1.368
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:53:13.475907+00:00",
+                        "execution_time": 2924,
+                        "execution_end_utc": "2024-02-28 20:53:16.399763+00:00",
+                        "thread_name": "ThreadPoolExecutor-9_0",
+                        "thread_ident": 17052,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "ba552967-47a2-4511-9697-d9e040717c5e",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:53:17 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "ba552967-47a2-4511-9697-d9e040717c5e",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d3b-5e9d8b6b080722ae00c98102;parent=5b705abd1d91495b;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.177,
+                                "downloadTime": 0.066
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 20:53:16.415987+00:00",
+                        "execution_time": 1294,
+                        "execution_end_utc": "2024-02-28 20:53:17.710125+00:00",
+                        "thread_name": "ThreadPoolExecutor-9_0",
+                        "thread_ident": 17052,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "b9783982-2c4e-4fb1-8202-e78270017619",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 20:53:19 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "b9783982-2c4e-4fb1-8202-e78270017619",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df9d3e-4ef7127161cbb71f6d8381b5;parent=77fb4424779c1b3d;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.111,
+                                "downloadTime": 0.107
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "repetitions_of_experiment": 1,
+    "repetitions_per_function": 3,
+    "concurrency": 1
+}

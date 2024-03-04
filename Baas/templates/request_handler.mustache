@@ -1,31 +1,40 @@
 package {{package}};
 
 {{#aws}}import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;{{/aws}}
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import java.util.Map;{{/aws}}
 {{#gcp}}import com.google.cloud.functions.HttpFunction;
 import com.google.cloud.functions.HttpRequest;
 import com.google.cloud.functions.HttpResponse;
 import java.io.PrintWriter;
-import com.google.gson.Gson;{{/gcp}}
+import com.google.gson.Gson;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;{{/gcp}}
 
-public class AWSRequestHandler implements {{#aws}}RequestHandler<{{input_type}}, {{output_type}}>{{/aws}}{{#gcp}}{{#aws}},{{/aws}}{{/gcp}}{{#gcp}}HttpFunction{{/gcp}} {
+public class AWSRequestHandler implements {{#aws}}RequestHandler<{{{input_type}}}, {{{output_type}}}>{{/aws}}{{#gcp}}{{#aws}}, {{/aws}}{{/gcp}}{{#gcp}}HttpFunction{{/gcp}} {
     {{#aws}}
     @Override
-    public {{output_type}} handleRequest({{input_type}} input, Context context) {
-        {{output_type}} output="";
-        {{method_call}};
+    public {{{output_type}}} handleRequest({{{input_type}}} input, Context context) {
+//if there is a problem with this statement -> make sure there is no space in the type of your variables
+//don´t: Map <String, String> do Map<String,String>
+{{{get_inputs}}}
+        {{{output_type}}} output;
+        {{{method_call}}};
         return output;
     }
     {{/aws}}
     {{#gcp}}
     @Override
     public void service(HttpRequest request, HttpResponse response) throws Exception {
-        String input = request.getFirstQueryParameter("input").orElse("defaultInput");
-
-        {{output_type}} output="";
-        {{method_call}};
-
         Gson gson = new Gson();
+
+        String requestBody = request.getReader().lines().reduce("", (s1, s2) -> s1 + s2);
+        System.out.println(requestBody);
+{{{get_inputs}}}
+
+        {{{output_type}}} output;
+        {{{method_call}}};
+
         String jsonOutput = gson.toJson(output);        
 
         PrintWriter writer = new PrintWriter(response.getWriter());

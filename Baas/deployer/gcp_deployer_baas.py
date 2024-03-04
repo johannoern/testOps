@@ -1,3 +1,4 @@
+import os
 import Baas.terraform as terraform
 import Baas.deployer.memory_calculation as memory_calculation
 import Baas.deployer.deployer_baas as deployer_baas
@@ -16,7 +17,7 @@ class GCP_deployer_baas(deployer_baas_interface):
 
     def prepare_tfvars(self, function_name, terraform_dir,  memory_config:[int]=None):
         #0 add things that are not the function
-        terraform.update_tfvars({"function_src": self._function_src, "region":self._region, "project": self._project_id}, terraform_dir, "gcp")
+        terraform.update_tfvars({"src_name": os.path.basename(self._function_src),"function_src": self._function_src, "region":self._region, "project": self._project_id}, terraform_dir, "gcp")
         
         #1. check for memory in function attributes
         if not memory_config == None:
@@ -35,17 +36,17 @@ class GCP_deployer_baas(deployer_baas_interface):
                 terraform.tfvars_add_function(function_name, self._handler, memory, terraform_dir, "gcp")
             return
         #4. if no memory configs where found so far - turn to default
-        terraform.tfvars_add_function(function_name, self._handler, 128, terraform_dir)
+        terraform.tfvars_add_function(function_name, self._handler, 128, terraform_dir, "gcp")
 
     #NOTE might be able to call generalized func - instead of duplicating code to gcp
-    def memory_calculation(self, terraform_dir, function_name):
+    def memory_calculation(self, terraform_dir, function_name, payload):
 
         invoker = GCPInvoker(gcp_project_id=self._project_id)
         min_speedup = 0.2
 
-        min_mem = memory_calculation.get_smallest_memory(self, terraform_dir, function_name, invoker, "google", "gcp", "available_memory_mb")
+        min_mem = memory_calculation.get_smallest_memory(self, terraform_dir, function_name, invoker, payload[0], "google", "gcp", "available_memory_mb")
 
-        max_mem = memory_calculation.get_biggest_memory(self, terraform_dir, function_name, invoker, min_speedup, "google", "gcp", "available_memory_mb")
+        max_mem = memory_calculation.get_biggest_memory(self, terraform_dir, function_name, invoker, min_speedup, payload[0], "google", "gcp", "available_memory_mb")
 
 
         terraform.terraform('apply', terraform_dir)

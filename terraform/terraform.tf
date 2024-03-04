@@ -52,12 +52,26 @@ resource "aws_iam_role" "iam_for_lambda"{
 }
 EOF
 }
-  
+
+resource "aws_s3_bucket" "testops_src_bucket" {
+  bucket = "baas-jfops-bucket"
+}
+
+resource "aws_s3_object" "object" {
+  depends_on = [ aws_s3_bucket.testops_src_bucket ]  
+  bucket = "baas-jfops-bucket"
+  key    = "eldgos-1.0-SNAPSHOT.jar"
+  source = var.amazon.function_src
+  source_hash = filemd5(var.amazon.function_src)
+}
 
 resource "aws_lambda_function" "test_subject" {
+  depends_on = [ aws_s3_object.object ]  
   for_each = {for func in var.amazon.functions : func.function_name => func}
 
-  filename         = var.amazon.function_src
+
+  s3_bucket        = aws_s3_bucket.testops_src_bucket.bucket
+  s3_key           = "eldgos-1.0-SNAPSHOT.jar"
   function_name    = each.value.function_name
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = each.value.handler
@@ -88,6 +102,7 @@ variable "gcp" {
     function_src = string,
     project      = string,
     region       = string,
+    src_name     = string,
     functions    = list(
       object({
         function_name = string,
@@ -101,6 +116,7 @@ variable "gcp" {
     function_src = ""
     project      = ""
     region       = "us-east1"
+    src_name     = ""
     functions    = []
   }
 }
@@ -116,7 +132,7 @@ resource "google_storage_bucket" "gcp_bucket" {
 }
 
 resource "google_storage_bucket_object" "jar" {
-  name   = "output.zip"
+  name   = var.gcp.src_name
   bucket = google_storage_bucket.gcp_bucket.name
   source = var.gcp.function_src
 }
@@ -128,6 +144,7 @@ resource "google_storage_bucket_object" "no_op" {
 }
 
 resource "google_cloudfunctions_function" "test_subject" {
+  depends_on = [ google_storage_bucket_object.jar ]  
   for_each = {for func in var.gcp.functions : func.function_name => func}
 
   name        = each.value.function_name

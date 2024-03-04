@@ -31,8 +31,8 @@ class GCPInvoker(InvokerInterface):
                 for region in deployment_dict['GCP_regions']:
                     print(region)
                     if rep_experiment == 0:
-                        #TODO change counter range back to 50
                         #TODO make sure output is checked
+                        #TODO back to 50
                         for no_op_counter in range(5):
                             res = {'execution_start_utc': datetime.now(timezone.utc)}
                             start = perf_counter()
@@ -62,17 +62,15 @@ class GCPInvoker(InvokerInterface):
                             for rep_function in range(repetitions_per_function):
                                 future = executor.submit(self.__invoker_timed, full_function_name,
                                                               payload[counter % len(payload)], region)
-                                result.append(future)
+                                
+                                result.append(future)                               
+                                
                                 counter += 1
                                 print(f"counter: {counter}\nrep_function: {rep_function}")
 
                             done, not_done = wait(result, return_when=concurrent.futures.ALL_COMPLETED)
+
                             for future in result:
-                                print(type(future))
-                                print("this is a 'future' in the result:")
-                                print(future)
-                                print('this is the future.result:')
-                                print(future.result())
                                 result_list.append(future.result())
 
                         end = perf_counter()
@@ -83,7 +81,6 @@ class GCPInvoker(InvokerInterface):
                         else:
                             dct.update({mem_config: result_list})
                             deployment_dict['GCP_regions'][region][experiment_str] = dct
-            print_neat_dict(deployment_dict)
         return deployment_dict
 
     def invoke_single_function(self, *, function_name: str, payload: Dict, region: str, **kwargs):
@@ -118,14 +115,28 @@ class GCPInvoker(InvokerInterface):
 
         #<class 'requests.models.Response'>
         response = authed_session.post(url_adress, json=payload)
+        
         end = perf_counter()
+        
+        counter = 0
+        
         res['execution_time'] = round((end - start) * 1000)
         res['execution_end_utc'] = datetime.now(timezone.utc)
         res['thread_name'] = thread.name
         res['thread_ident'] = thread.ident
         res['status_code'] = response.status_code
-        res['response'] = json.loads(response.content.decode('utf-8'))
+        print(response.content.decode('utf-8'))
+        if response.status_code == 200:
+            res['response'] = json.loads(response.content.decode('utf-8'))
+        else:
+            res['response'] = response.content.decode('utf-8')
+        print(res['response'])
         return res
 
+    def error(self, response):
+        print("check if something went wrong")
+        print(response)
+        return not self.get_status_code(response)==200
+    
     def get_status_code(self, response):
         return response.status_code     

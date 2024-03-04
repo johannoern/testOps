@@ -16,8 +16,12 @@ def print_neat_dict(dict):
     print(json.dumps(dict, indent=4, default=str))
 
 
-def execute(command:str):
-    subprocess.check_call(command, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
+def execute(command:str, print_to_console=True):
+    if print_to_console:
+        subprocess.check_call(command, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
+    else:
+        subprocess.check_call(command, shell=True, stderr=subprocess.STDOUT)
+    
 
 def create_credentials():
     if not exists('credentials.json'):

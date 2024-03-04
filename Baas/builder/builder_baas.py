@@ -1,14 +1,16 @@
 import zipfile
 import os
 import re
+from Baas.builder.aws_builder_baas import AWS_builder_baas
+from Baas.builder.builder_baas_interface import builder_baas_interface
 import Gen_Utils
 import pystache
-import json
+import datetime
 
 
 #project_path, main_class/aws_handler, function_name
-def build(project_path, main_class, function_name, provider):
-    aws_handler, aws_function_name, gcp_function_name = implement_handler(main_class, function_name, provider)
+def build(project_path, main_class, function_name, builders):
+    aws_handler, aws_function_name, gcp_function_name = implement_handler(main_class, function_name, builders)
 
 #LATER it is possible to add a flag to skip the adaption
 #for example if shadow is used to make a fat jar the build file would be adapted without need
@@ -23,9 +25,9 @@ def build(project_path, main_class, function_name, provider):
     libs_path = os.path.join(project_path, "build", "libs")
     jar_path = os.path.join(libs_path, jar_name).replace("\\","/")
     
-    src_name = "output"
+    src_name = f'output{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}'
     zip_path = os.path.join(libs_path, src_name + ".zip").replace("\\","/")
-    
+#NOTE Zipfile not needed if GCP not in provider    
     with zipfile.ZipFile(zip_path, 'w') as zip_file:
         zip_file.write(jar_path, arcname=os.path.basename(jar_path))
     return {"aws_code": jar_path, "gcp_code":zip_path, "aws_handler": aws_handler, "gcp_handler": aws_handler, "aws_function_name": aws_function_name, "gcp_function_name": gcp_function_name}
@@ -36,7 +38,7 @@ def handler_implemented():
     return False
 
 #LATER cannot build RequestStreamHandler only RequestHandler
-def implement_handler(main_class, function_name, provider: list):
+def implement_handler(main_class, function_name, builders: list[builder_baas_interface]):
     #NOTE not to pretty really have to change the handler_implemented method
     aws_function_name = "handleRequest"
     gcp_function_name = "service"
@@ -52,11 +54,19 @@ def implement_handler(main_class, function_name, provider: list):
     if main_class_name.endswith(".java"):
         main_class_name = main_class_name[:-5]
 
-    if not inputs == "":
-        inputs = "input"
+    print("inputs after parsing")
+    print(inputs)
+    if not inputs == "":        
+        inputs, input_type, get_inputs = handle_inputs(inputs, builders)
+        print("get_inputs after handle_inputs")
+        print(get_inputs)
+    else:
+        #does not matter will be empty anyway
+        get_inputs:dict = {}
+        input_type = "Object"
 
     if output_type == "void":
-        methodcall = f"{main_class_name}.{function_name}({inputs})"
+        methodcall = f'{main_class_name}.{function_name}({inputs});\n\t\toutput=""'
         output_type = "String"
     else:
         methodcall = f"output = {main_class_name}.{function_name}({inputs})"
@@ -65,9 +75,12 @@ def implement_handler(main_class, function_name, provider: list):
     #unpacking object has to be done by the function - would be nicer if the code did that for you
     #input, aws, gcp
     context = {"package":package}
-    for target in provider:
-        context.update({target:{"package":package, "input_type": "Object", "output_type": output_type, "method_call": methodcall}})
-    json.dumps(context, indent=4)
+    for builder in builders:
+        target = builder._provider
+        context.update({target:{"package":package, "input_type": input_type, "output_type": output_type,
+                                "method_call": methodcall, "get_inputs": get_inputs.get(target, "")}})
+    print("this is the context")
+    Gen_Utils.print_neat_dict(context)
     with open(os.path.join('.', 'Baas', 'templates', 'request_handler.mustache'), "r") as template_file:
         template = template_file.read()
     
@@ -101,6 +114,31 @@ def add_dependency(project_path, dependency_string):
     else:
         print(f"{dependency_string} is already in build.gradle")
 
+def handle_inputs(inputs, builders:list[builder_baas_interface]):
+    # Define regex pattern to match variable type and name
+    pattern = r'([^\s]+) (\w+),?'
+
+    print(f"inputs: {inputs}")
+    # Find all matches in the input string
+    matches = re.findall(pattern, inputs)
+
+    # Convert matches to list of tuples
+    results:list[(str, str)] = [(match[0], match[1]) for match in matches]
+    get_inputs = {}
+    for builder in builders:
+        context_builder = builder.handle_inputs(results)
+        get_inputs.update(context_builder)
+
+    inputs = ""
+
+    for result in results:
+        inputs = f'{inputs}{result[1]}, '
+    inputs = inputs[:-2]
+
+    input_type = "Map<String, Object>"
+    return inputs, input_type, get_inputs
+    
+#TODO implement
 def adaptation_needed(project_path):
     build_file = os.path.join(project_path, 'build.gradle')
     with open(build_file, 'r') as file:

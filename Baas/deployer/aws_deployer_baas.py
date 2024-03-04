@@ -34,16 +34,16 @@ class AWS_deployer_baas(deployer_baas_interface):
                 terraform.tfvars_add_function(function_name, self._handler, memory, terraform_dir, "amazon")
             return
         #4. if no memory configs where found so far - turn to default and deploy else nothing is deployed
-        terraform.tfvars_add_function(function_name, self._handler, 128, terraform_dir)
+        terraform.tfvars_add_function(function_name, self._handler, 128, terraform_dir, "amazon")
 
     #NOTE might be able to call generalized func - instead of duplicating code to gcp
-    def memory_calculation(self, terraform_dir, function_name):
+    def memory_calculation(self, terraform_dir, function_name, payload):
         invoker = AWSInvoker()
         min_speedup = 0.2
 
-        min_mem = memory_calculation.get_smallest_memory(self, terraform_dir, function_name, invoker, "aws", "amazon", "memory_size")
+        min_mem = memory_calculation.get_smallest_memory(self, terraform_dir, function_name, invoker, payload[0], "aws", "amazon", "memory_size")
 
-        max_mem = memory_calculation.get_biggest_memory(self, terraform_dir, function_name, invoker, min_speedup, "aws", "amazon", "memory_size")
+        max_mem = memory_calculation.get_biggest_memory(self, terraform_dir, function_name, invoker, min_speedup, payload[0], "aws", "amazon", "memory_size")
 
         terraform.terraform('apply', terraform_dir)
         print(f"min_mem: {min_mem}")

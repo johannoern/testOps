@@ -3,8 +3,9 @@ from Baas.deployer.deployer_baas_interface import deployer_baas_interface
 from invoker.invoker_interface import InvokerInterface
 from .. import terraform
 import os
+import Gen_Utils
 
-def deploy(terraform_dir, function_name, providers:list[deployer_baas_interface], memory=None):
+def deploy(terraform_dir, function_name, providers:list[deployer_baas_interface], payload, memory=None):
     #create terraform.tf
     create_terraformfile(terraform_dir, providers)
     
@@ -12,9 +13,10 @@ def deploy(terraform_dir, function_name, providers:list[deployer_baas_interface]
     for provider in providers:
         provider.prepare_tfvars(function_name, terraform_dir, memory)
 
-    #find mem values smallest biggest
-    for provider in providers:
-        provider.memory_calculation(terraform_dir, function_name)
+    #find mem values smallest and biggest
+    if memory == None:
+        for provider in providers:
+            provider.memory_calculation(terraform_dir, function_name, payload)
 
     #deploy
     terraform.terraform('apply', terraform_dir)
@@ -48,11 +50,14 @@ def deployed_mem(tf_state:dict, provider, memory_attribute)->list[int]:
     print(f"{provider} deployed mem: {mem_configs}")
     return mem_configs
 
-def invoke_function(function_name, region, invoker:InvokerInterface, memory):
+def invoke_function(function_name, region, invoker:InvokerInterface, memory, payload):
     name = f"{function_name}_{memory}MB"
     print(f"invoking {name}")
-    invoker.invoke_single_function(function_name = name, payload = None, region = region)
+    invoker.invoke_single_function(function_name = name, payload = payload, region = region)
     start = perf_counter()
-    response = invoker.invoke_single_function(function_name = name, payload = None, region = region)
+    response = invoker.invoke_single_function(function_name = name, payload = payload, region = region)
     end = perf_counter()
+    if invoker.error(response):
+        print("something went wrong:")
+        Gen_Utils.print_neat_dict(response)
     return round((end - start)*1000), response

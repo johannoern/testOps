@@ -16,6 +16,10 @@ class InvokerInterface(ABC):
         pass
 
     @abstractmethod
+    def error(response):
+        '''tells whether there is an error in the response'''
+        
+    @abstractmethod
     def get_status_code(response):
         '''gets the status code from the response'''
         pass

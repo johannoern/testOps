@@ -19,13 +19,20 @@
             "example": "C:/Users/User/Documents/ServerlessProject/src/main/java/org/example/ServerlessFunction.java"
         },
         "$comment": {
-            "description":"as default gcp and aws are deployed #TODO allow the deployment of only one provider programmatically"
+            "description":"as default gcp and aws are deployed"
         },
-            "provider":{
+        "provider":{
             "type":"array",
             "items": {
                 "type": "string",
                 "enum": ["aws", "gcp"]
+              }
+        },
+        "payload":{
+            "type":"array",
+            "description": "holds various payloads for testing",
+            "items": {
+                "type": "object"
               }
         }
     }

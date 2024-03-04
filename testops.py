@@ -5,6 +5,8 @@ from json import JSONDecodeError
 from os.path import exists
 import json
 from typing import Dict
+from Baas.builder.aws_builder_baas import AWS_builder_baas
+from Baas.builder.gcp_builder_baas import GCP_builder_baas
 from Baas.deployer.aws_deployer_baas import AWS_deployer_baas
 from Baas.deployer.gcp_deployer_baas import GCP_deployer_baas
 
@@ -45,24 +47,24 @@ def validate_json(candidate: str) -> Dict:
     contains_aws = dd.get('AWS_regions', 0) != 0
     contains_gcp = dd.get('GCP_regions', 0) != 0
 
-    if contains_aws:
-        if dd.get('aws_handler', None) is None:
-            error_msg = 'Check aws_handler'
-        if dd.get('no_op_handler_aws', None) is None:
-            error_msg = 'Check no_op_handler_aws'
-        if dd.get('aws_code', None) is None:
-            error_msg = 'Check aws_code'
-        if dd.get('aws_runtime', None) is None:
-            error_msg = 'Check aws_runtime'
-    if contains_gcp:
-        if dd.get('gcp_handler', None) is None:
-            error_msg = 'Check gcp_handler'
-        if dd.get('no_op_handler_gcp', None) is None:
-            error_msg = 'Check no_op_handler_gcp'
-        if dd.get('gcp_code', None) is None:
-            error_msg = 'Check gcp_code'
-        if dd.get('gcp_runtime', None) is None:
-            error_msg = 'Check gcp_runtime'
+    # if contains_aws:
+    #     if dd.get('aws_handler', None) is None:
+    #         error_msg = 'Check aws_handler'
+    #     if dd.get('no_op_handler_aws', None) is None:
+    #         error_msg = 'Check no_op_handler_aws'
+    #     if dd.get('aws_code', None) is None:
+    #         error_msg = 'Check aws_code'
+    #     if dd.get('aws_runtime', None) is None:
+    #         error_msg = 'Check aws_runtime'
+    # if contains_gcp:
+    #     if dd.get('gcp_handler', None) is None:
+    #         error_msg = 'Check gcp_handler'
+    #     if dd.get('no_op_handler_gcp', None) is None:
+    #         error_msg = 'Check no_op_handler_gcp'
+    #     if dd.get('gcp_code', None) is None:
+    #         error_msg = 'Check gcp_code'
+    #     if dd.get('gcp_runtime', None) is None:
+    #         error_msg = 'Check gcp_runtime'
     # if dd.get('repetitions_of_experiment', None) is None or not int_try_parse(dd.get('repetitions_of_experiment')):
     #     error_msg = 'Check repetitions_of_experiment'
     # if dd.get('repetitions_per_function', None) is None or not int_try_parse(dd.get('repetitions_per_function')):
@@ -171,9 +173,14 @@ print_config()
 #LATER validations in separate function
 if build:
     deployment_dict = populate_defaults("build_default.json", deployment_dict)
-    validate_schema("build_schema.json", deployment_dict)    
+    validate_schema("build_schema.json", deployment_dict)  
+    builders = []
+    if "aws" in deployment_dict["provider"]:
+        builders.append(AWS_builder_baas("aws"))
+    if "gcp" in deployment_dict["provider"]:
+        builders.append(GCP_builder_baas("gcp"))
     deployment_dict.update(builder_baas.build(deployment_dict["project_path"], deployment_dict["main_class"],
-                                              deployment_dict["function_name"], deployment_dict["provider"]))
+                                              deployment_dict["function_name"], builders))
 
 if baas_deploy:
     deployment_dict = populate_defaults("deploy_default.json", deployment_dict)
@@ -185,7 +192,8 @@ if baas_deploy:
     if "gcp" in deployment_dict["provider"]:
         providers.append(GCP_deployer_baas(deployment_dict["gcp_handler"], deployment_dict["gcp_code"],
                                            deployment_dict["gcp_region"], deployment_dict["gcp_project_id"]))
-    deployer_baas.deploy(deployment_dict["terraform_dir"], deployment_dict["function_name"], providers)
+    deployer_baas.deploy(deployment_dict["terraform_dir"], deployment_dict["function_name"],
+                         providers, deployment_dict["payload"], deployment_dict["memory"])
     # deployer_baas.create_terraformfile(deployment_dict["terraform_dir"], deployment_dict["provider"])
     # deployer_baas.prepare_tfvars_aws(deployment_dict["aws_handler"], deployment_dict["function_name"],
     #                                 deployment_dict["terraform_dir"], deployment_dict["old_analyser"],
@@ -212,7 +220,7 @@ if deploy:
 
 #NOTE deployer_return will never be populated
 if invoke:
-    populate_defaults("invoke_default.json", deployment_dict)
+    # populate_defaults("invoke_default.json", deployment_dict)
     create_credentials()
     if deployer_return is not None:
         invoker_return = invoker_v2.run_experiment(deployer_return)

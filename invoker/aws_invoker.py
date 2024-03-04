@@ -27,7 +27,7 @@ class AWSInvoker(InvokerInterface):
                 for region in deployment_dict['AWS_regions']:
                     if rep_experiment == 0:
                         #TODO make sure output is checked
-                        #TODO change back to 50
+                        #TODO back to 50
                         for no_op_counter in range(5):
                             res = {'execution_start_utc': datetime.datetime.now(timezone.utc)}
                             start = perf_counter()
@@ -54,10 +54,10 @@ class AWSInvoker(InvokerInterface):
                             for rep_function in range(repetitions_per_function):
                                 result.append(executor.submit(self.__invoker_timed, full_function_name, payload[counter % len(payload)], region))
                                 counter += 1
+                                print(f"counter: {counter}\nrep_function: {rep_function}")                                
 
                             done, not_done = wait(result, return_when=concurrent.futures.ALL_COMPLETED)
                             for future in result:
-                                print('this is your result:', future.result())
                                 result_list.append(future.result())
 
                         end = perf_counter()
@@ -68,8 +68,6 @@ class AWSInvoker(InvokerInterface):
                         else:
                             dct.update({mem_config: result_list})
                             deployment_dict['AWS_regions'][region][experiment_str] = dct
-            #LATER why?
-            print_neat_dict(deployment_dict)
         return deployment_dict
 
     def invoke_single_function(self, *, function_name: str, payload: Dict, region: str, **kwargs):
@@ -104,12 +102,18 @@ class AWSInvoker(InvokerInterface):
         return session.client('lambda', region_name=region_name)
 
     def __invoker_timed(self, function_name: str, payload: Dict, region: str) -> Dict:
+        print("function: aws")
+        print(f"srcProvider: {payload['srcProvider']}")
+        print(f"destProvider: {payload['destProvider']}")
+        print(f"sourceKeyName: {payload['sourceKeyName']}\n\n")
         res = {'execution_start_utc': datetime.datetime.now(timezone.utc)}
         thread = current_thread()
 
         start = perf_counter()
         response = self.invoke_single_function(function_name=function_name, payload=payload, invocation_type='RequestResponse', region=region)
         end = perf_counter()
+
+        print(response)
         res['execution_time'] = round((end - start) * 1000)
         res['execution_end_utc'] = datetime.datetime.now(timezone.utc)
         res['thread_name'] = thread.name
@@ -119,5 +123,11 @@ class AWSInvoker(InvokerInterface):
         # execution_times[thread.name] = res
         return res
 
+    def error(self, response):
+        if self.get_status_code(response)==200 or "errorMessage" in response["payload"]:
+            return True
+        else:
+            return False
+        
     def get_status_code(self, response):
         return response["StatusCode"]

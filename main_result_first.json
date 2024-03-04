@@ -1,0 +1,670 @@
+{
+    "old_analyser": true,
+    "aws_region": "us-east-1",
+    "gcp_region": "us-central1",
+    "terraform_dir": "./terraform",
+    "provider": [
+        "aws",
+        "gcp"
+    ],
+    "payload": [
+        {
+            "srcProvider": "aws",
+            "sourceBucketName": "testops-example",
+            "sourceKeyName": "test1KB.txt",
+            "sourceRegion": "us-east-1",
+            "destProvider": "aws",
+            "destBucketName": "testops-example",
+            "destKeyName": "test_file_new.txt",
+            "destRegion": "us-east-1",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "gcp",
+            "sourceBucketName": "testproject-jfops-bucket",
+            "sourceKeyName": "test1KB.txt",
+            "sourceRegion": "not needed",
+            "destProvider": "gcp",
+            "destBucketName": "testproject-jfops-bucket",
+            "destKeyName": "copy.txt",
+            "destRegion": "not needed",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "aws",
+            "sourceBucketName": "testops-example",
+            "sourceKeyName": "test10KB.txt",
+            "sourceRegion": "us-east-1",
+            "destProvider": "aws",
+            "destBucketName": "testops-example",
+            "destKeyName": "test_file_new.txt",
+            "destRegion": "us-east-1",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "gcp",
+            "sourceBucketName": "testproject-jfops-bucket",
+            "sourceKeyName": "test10KB.txt",
+            "sourceRegion": "not needed",
+            "destProvider": "gcp",
+            "destBucketName": "testproject-jfops-bucket",
+            "destKeyName": "copy.txt",
+            "destRegion": "not needed",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "aws",
+            "sourceBucketName": "testops-example",
+            "sourceKeyName": "test100KB.txt",
+            "sourceRegion": "us-east-1",
+            "destProvider": "aws",
+            "destBucketName": "testops-example",
+            "destKeyName": "test_file_new.txt",
+            "destRegion": "us-east-1",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        },
+        {
+            "srcProvider": "gcp",
+            "sourceBucketName": "testproject-jfops-bucket",
+            "sourceKeyName": "test100KB.txt",
+            "sourceRegion": "not needed",
+            "destProvider": "gcp",
+            "destBucketName": "testproject-jfops-bucket",
+            "destKeyName": "copy.txt",
+            "destRegion": "not needed",
+            "tempDir": "/tmp/downloaded-directory",
+            "accessKey": "AKIAZPDYYUZ2QJ5D5N6D",
+            "secretKey": "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",
+            "credentialsJson": "{\"type\": \"service_account\", \"project_id\": \"testproject-uibk\", \"private_key_id\": \"f22c2fc0d05241503d287464fd9727d0ccbbd373\", \"private_key\": \"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDD/S6Z8Nb2N2/Z\nsJBHT/mpS0W/DLTRbLkDt2YQ4zVNV8oSpFNxERPY7QfgphFMvFdTVEUZhWwqvyQW\n6pdPXTHgcgmTxGxTopY5xMm5Ftrnq1pUYj9cSdJvuzIncTdQcsqEI2sSc9dBf3u1\nxQIBbrK3GlTMxy6MhSsVaA3TvJntSbMn38Zpv+zr4X5f3k188lXMgI5r7Ro4jLLE\n22ZxTs27c4CS40dha3cva3pyExTTREY285ZlTt8Z+kW1nBsDey2lkejH6aNDc7+u\ncabnSPtq/mUUX2hYhjqdIwAPzQiG3VODz2kry765ugSeyJWjMSpMunLLc+FDhbk2\nDWwt6tRRAgMBAAECggEAHfCB23Neqzs5w3QE/lfZyEJe87oBr1JgCxDLrz2+SUPl\ncyaWNpoIwaUoBGnqD6Jf5rNjYOwwY3FSlouctLuEYIibLO8fK0GVmFqXBEbZBvX2\ntRhTHIqMcpQSq9LQQ+JdTIVKmIWItxE9+T0Qut5Jv83ucV/mHQJE3B7KqfNQQl6w\nuV9iJWUvZaGN85Q6TKtp+Z/jV2lXKnqUp0K6knjW2oAPHFTmii8O7KbHLvi7Oqye\n4iw2v8iq/H9y7NEklW6zBqGrkBiU9707a4jPcPOj470MfrdV2F5IYWRFnZbe8GzD\n0xAtH22A4E/YJ0FSsQ7hVXDBrlw/Swd4CGImascuSQKBgQDw2QfLfNO/028kurtU\n+YsF5ICksg07f9ef4ySyhOQvyUgR/fjK9QKs93+g0SgN2Jdk/NIyag2Rlve7xnUV\nKaBOQiQOwyHYXulXOmWDII0sjWl+zpfHxxwGcP+/FcUEqOgxuFEyIudvyYknT8OV\nevlUqiAOiIEGmYCyuuzkWkjVjQKBgQDQUa3j9/+67XAssEScqpXFLAiiKLssmfPO\nzdXnOcucVtFYC0ToLQEpjZPdrNYN4rt3YgSgKXNTIg+H1+gyzVtDfSKkv5HmoO1J\nEkW5sKN4CzA429uid8On+if1aAYIXCFjadbC3WfjCPnWY6fV5FbQ6MDy8UPlb2Eq\n2JvF7T0+1QKBgEzq4wRnrzB6E+rFAALZVz7ghP0UKAmygGh9oECrFDz2qV+lnoki\nymH3APmZEpOpcmA8Jd0X5ZFzh1aewNGrY5jaoq1cQDjbxuWmrri78poh52kqDWst\n+ZNND0A1caBVWSJX3QaIAyW+VWEKpknc5jfVxTse+SXkbCeobvNWqiAZAoGAPc1t\nrGtf6CIXHHry8BO/uS5WJV22IgZOibURV7cSzAAJvXgiaksnxB8nliV3n8j7WvCu\ndKG3gBtjxiZs0d2QzNXsGDppW6W0n/AW1X8tECkplkTLxUiIuGYDws+osoQ6t5an\ny0oKTxXToSIRoehLRVE4JRskzIWdqyt2E2NNvz0CgYBSaMrwaV/DSm8uPLYdCFO4\npKiT3EU7ba2kem7zoWxBqY/EmO56ghXaOd7G0GYKiii0pTas4N4MTNX9yTsIJdhI\nYD7NcVbx1Maaxmb9ZykIyNrX7yx1typ9bV6XTMP2z4b9nNHOeF9HrEGJCl6HTAa5\nfDuDTCqz0cZ6h56ef4MM5w==\n-----END PRIVATE KEY-----\n\", \"client_email\": \"1973401500-compute@developer.gserviceaccount.com\", \"client_id\": \"117906397655183917317\", \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\", \"token_uri\": \"https://oauth2.googleapis.com/token\", \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/1973401500-compute%40developer.gserviceaccount.com\", \"universe_domain\": \"googleapis.com\"}",
+            "delete": true
+        }
+    ],
+    "memory": [
+        128,
+        256,
+        512,
+        1024,
+        2048
+    ],
+    "function_name": "main",
+    "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
+    "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
+    "gcp_project_id": "testproject-uibk",
+    "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
+    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output2024-02-28_15-30-37.zip",
+    "aws_handler": "org.example.AWSRequestHandler",
+    "gcp_handler": "org.example.AWSRequestHandler",
+    "aws_function_name": "handleRequest",
+    "gcp_function_name": "service",
+    "GCP_regions": {
+        "us-central1": {
+            "memory_configurations": [
+                128,
+                256,
+                512,
+                1024,
+                2048
+            ],
+            "Experiment_0": {
+                "no_ops_function_0": {
+                    "execution_start_utc": "2024-02-28 16:26:53.679656+00:00",
+                    "execution_time": 666,
+                    "execution_end_utc": "2024-02-28 16:26:54.345844+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_1": {
+                    "execution_start_utc": "2024-02-28 16:26:54.345844+00:00",
+                    "execution_time": 670,
+                    "execution_end_utc": "2024-02-28 16:26:55.016421+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_2": {
+                    "execution_start_utc": "2024-02-28 16:26:55.016421+00:00",
+                    "execution_time": 688,
+                    "execution_end_utc": "2024-02-28 16:26:55.704427+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_3": {
+                    "execution_start_utc": "2024-02-28 16:26:55.704427+00:00",
+                    "execution_time": 713,
+                    "execution_end_utc": "2024-02-28 16:26:56.416541+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_4": {
+                    "execution_start_utc": "2024-02-28 16:26:56.416541+00:00",
+                    "execution_time": 589,
+                    "execution_end_utc": "2024-02-28 16:26:57.006330+00:00",
+                    "thread_name": "testOps_no_op_function::us-central1",
+                    "thread_ident": ""
+                },
+                "128": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:26:57.021863+00:00",
+                        "execution_time": 9419,
+                        "execution_end_utc": "2024-02-28 16:27:06.440219+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 9372,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 2.597,
+                            "downloadTime": 2.105
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:06.445225+00:00",
+                        "execution_time": 6687,
+                        "execution_end_utc": "2024-02-28 16:27:13.132126+00:00",
+                        "thread_name": "ThreadPoolExecutor-0_0",
+                        "thread_ident": 9372,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 1.399,
+                            "downloadTime": 0.289
+                        }
+                    }
+                ],
+                "256": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:13.182863+00:00",
+                        "execution_time": 4656,
+                        "execution_end_utc": "2024-02-28 16:27:17.839015+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 11148,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.334,
+                            "downloadTime": 0.783
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:17.843049+00:00",
+                        "execution_time": 8332,
+                        "execution_end_utc": "2024-02-28 16:27:26.175082+00:00",
+                        "thread_name": "ThreadPoolExecutor-1_0",
+                        "thread_ident": 11148,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 1.307,
+                            "downloadTime": 0.093
+                        }
+                    }
+                ],
+                "512": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:26.226964+00:00",
+                        "execution_time": 6566,
+                        "execution_end_utc": "2024-02-28 16:27:32.792336+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 8212,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.714,
+                            "downloadTime": 1.815
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:32.800281+00:00",
+                        "execution_time": 1688,
+                        "execution_end_utc": "2024-02-28 16:27:34.488727+00:00",
+                        "thread_name": "ThreadPoolExecutor-2_0",
+                        "thread_ident": 8212,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.346,
+                            "downloadTime": 0.058
+                        }
+                    }
+                ],
+                "1024": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:34.547222+00:00",
+                        "execution_time": 5379,
+                        "execution_end_utc": "2024-02-28 16:27:39.927060+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 2892,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.28,
+                            "downloadTime": 0.898
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:39.941817+00:00",
+                        "execution_time": 2723,
+                        "execution_end_utc": "2024-02-28 16:27:42.663956+00:00",
+                        "thread_name": "ThreadPoolExecutor-3_0",
+                        "thread_ident": 2892,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.349,
+                            "downloadTime": 0.047
+                        }
+                    }
+                ],
+                "2048": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:42.707947+00:00",
+                        "execution_time": 4504,
+                        "execution_end_utc": "2024-02-28 16:27:47.212121+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 5520,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.311,
+                            "downloadTime": 0.743
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:47.218115+00:00",
+                        "execution_time": 1701,
+                        "execution_end_utc": "2024-02-28 16:27:48.918818+00:00",
+                        "thread_name": "ThreadPoolExecutor-4_0",
+                        "thread_ident": 5520,
+                        "status_code": 200,
+                        "response": {
+                            "uploadTime": 0.147,
+                            "downloadTime": 0.056
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "AWS_regions": {
+        "us-east-1": {
+            "memory_configurations": [
+                128,
+                256,
+                512,
+                1024,
+                2048
+            ],
+            "Experiment_0": {
+                "no_ops_function_0": {
+                    "execution_start_utc": "2024-02-28 16:27:48.976785+00:00",
+                    "execution_time": 1940,
+                    "execution_end_utc": "2024-02-28 16:27:50.917430+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_1": {
+                    "execution_start_utc": "2024-02-28 16:27:50.917430+00:00",
+                    "execution_time": 964,
+                    "execution_end_utc": "2024-02-28 16:27:51.881920+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_2": {
+                    "execution_start_utc": "2024-02-28 16:27:51.881920+00:00",
+                    "execution_time": 997,
+                    "execution_end_utc": "2024-02-28 16:27:52.878297+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_3": {
+                    "execution_start_utc": "2024-02-28 16:27:52.878297+00:00",
+                    "execution_time": 1023,
+                    "execution_end_utc": "2024-02-28 16:27:53.900706+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "no_ops_function_4": {
+                    "execution_start_utc": "2024-02-28 16:27:53.900706+00:00",
+                    "execution_time": 1236,
+                    "execution_end_utc": "2024-02-28 16:27:55.136940+00:00",
+                    "thread_name": "testOps_no_op_function::us-east-1",
+                    "thread_ident": ""
+                },
+                "128": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:27:55.161953+00:00",
+                        "execution_time": 39846,
+                        "execution_end_utc": "2024-02-28 16:28:35.007515+00:00",
+                        "thread_name": "ThreadPoolExecutor-5_0",
+                        "thread_ident": 12044,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "be41e73a-5a83-4518-86f5-94099d2ecf43",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:28:35 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "146",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "be41e73a-5a83-4518-86f5-94099d2ecf43",
+                                    "x-amz-function-error": "Unhandled",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5f0c-4254cc92390e16603b7155e0;parent=2ba646531083b71c;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "FunctionError": "Unhandled",
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "errorType": "Runtime.ExitError",
+                                "errorMessage": "RequestId: be41e73a-5a83-4518-86f5-94099d2ecf43 Error: Runtime exited with error: exit status 1"
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:28:35.007515+00:00",
+                        "execution_time": 44998,
+                        "execution_end_utc": "2024-02-28 16:29:20.006280+00:00",
+                        "thread_name": "ThreadPoolExecutor-5_0",
+                        "thread_ident": 12044,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "0a535a6c-6e91-420c-b8af-0c306b2db9d2",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:29:20 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "0a535a6c-6e91-420c-b8af-0c306b2db9d2",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5f34-193f179523a50221532c3384;parent=4ad4dfd699d80305;sampled=0;lineage=f2060e5b:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 3.082,
+                                "downloadTime": 0.381
+                            }
+                        }
+                    }
+                ],
+                "256": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:29:20.009310+00:00",
+                        "execution_time": 31569,
+                        "execution_end_utc": "2024-02-28 16:29:51.578369+00:00",
+                        "thread_name": "ThreadPoolExecutor-6_0",
+                        "thread_ident": 12540,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "96847bfb-89aa-43c9-a6aa-eb004227f1ad",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:29:52 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "39",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "96847bfb-89aa-43c9-a6aa-eb004227f1ad",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5f61-11e63839164120513619bbd0;parent=3466f81533a95293;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 2.5,
+                                "downloadTime": 9.821
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:29:51.579369+00:00",
+                        "execution_time": 13182,
+                        "execution_end_utc": "2024-02-28 16:30:04.760973+00:00",
+                        "thread_name": "ThreadPoolExecutor-6_0",
+                        "thread_ident": 12540,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "78025b7b-f855-4e89-8686-4d0e022f8323",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:05 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "78025b7b-f855-4e89-8686-4d0e022f8323",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5f81-3d9b0d1b7bce9b5000b30ebc;parent=7dd39e4a4b16b05f;sampled=0;lineage=01f48b89:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.543,
+                                "downloadTime": 0.152
+                            }
+                        }
+                    }
+                ],
+                "512": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:30:04.764975+00:00",
+                        "execution_time": 15324,
+                        "execution_end_utc": "2024-02-28 16:30:20.088955+00:00",
+                        "thread_name": "ThreadPoolExecutor-7_0",
+                        "thread_ident": 4612,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "9f6fd4b7-8f87-41f2-8329-c55059f6a11e",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:20 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "9f6fd4b7-8f87-41f2-8329-c55059f6a11e",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5f8e-0934f504417c2b7f1ae6fd34;parent=6eb0054fe62e701c;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.864,
+                                "downloadTime": 4.702
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:30:20.088955+00:00",
+                        "execution_time": 6402,
+                        "execution_end_utc": "2024-02-28 16:30:26.491974+00:00",
+                        "thread_name": "ThreadPoolExecutor-7_0",
+                        "thread_ident": 4612,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "06ab4265-96c5-4a2d-961b-55a79dab7561",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:26 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "06ab4265-96c5-4a2d-961b-55a79dab7561",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5f9d-2f158c923175942806d2f751;parent=7edc45e9dfb6395c;sampled=0;lineage=8b1731ad:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.307,
+                                "downloadTime": 0.112
+                            }
+                        }
+                    }
+                ],
+                "1024": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:30:26.521670+00:00",
+                        "execution_time": 8702,
+                        "execution_end_utc": "2024-02-28 16:30:35.224339+00:00",
+                        "thread_name": "ThreadPoolExecutor-8_0",
+                        "thread_ident": 8112,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "99bd5444-ee76-4b0f-ad68-6d5037ceddfb",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:35 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "99bd5444-ee76-4b0f-ad68-6d5037ceddfb",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5fa4-5de37482440c451741b4c80c;parent=118a6fb17a7bdf09;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.661,
+                                "downloadTime": 2.425
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:30:35.224339+00:00",
+                        "execution_time": 3914,
+                        "execution_end_utc": "2024-02-28 16:30:39.138279+00:00",
+                        "thread_name": "ThreadPoolExecutor-8_0",
+                        "thread_ident": 8112,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "01487bd7-5583-47e9-bba7-2e7c0eff7a7b",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:39 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "01487bd7-5583-47e9-bba7-2e7c0eff7a7b",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5fac-7f60c8c3377f0c984904d2b0;parent=4daec19ef4fc99a6;sampled=0;lineage=0bece672:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.205,
+                                "downloadTime": 0.076
+                            }
+                        }
+                    }
+                ],
+                "2048": [
+                    {
+                        "execution_start_utc": "2024-02-28 16:30:39.171850+00:00",
+                        "execution_time": 5567,
+                        "execution_end_utc": "2024-02-28 16:30:44.738760+00:00",
+                        "thread_name": "ThreadPoolExecutor-9_0",
+                        "thread_ident": 9816,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "be3fa68e-d0f9-4616-8e1c-e4e6085b9887",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:45 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "be3fa68e-d0f9-4616-8e1c-e4e6085b9887",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5fb0-7edfaa3604d65c2569350d60;parent=6d757cd08fa4885a;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.349,
+                                "downloadTime": 1.174
+                            }
+                        }
+                    },
+                    {
+                        "execution_start_utc": "2024-02-28 16:30:44.738760+00:00",
+                        "execution_time": 2570,
+                        "execution_end_utc": "2024-02-28 16:30:47.308384+00:00",
+                        "thread_name": "ThreadPoolExecutor-9_0",
+                        "thread_ident": 9816,
+                        "status_code": 200,
+                        "response": {
+                            "ResponseMetadata": {
+                                "RequestId": "a06ff036-7986-423e-a2cc-0fd27cd7d84c",
+                                "HTTPStatusCode": 200,
+                                "HTTPHeaders": {
+                                    "date": "Wed, 28 Feb 2024 16:30:47 GMT",
+                                    "content-type": "application/json",
+                                    "content-length": "41",
+                                    "connection": "keep-alive",
+                                    "x-amzn-requestid": "a06ff036-7986-423e-a2cc-0fd27cd7d84c",
+                                    "x-amzn-remapped-content-length": "0",
+                                    "x-amz-executed-version": "$LATEST",
+                                    "x-amzn-trace-id": "root=1-65df5fb6-44512cd71e9d1c992aaf08a5;parent=05913da88e3ce90d;sampled=0;lineage=d1b6383e:0"
+                                },
+                                "RetryAttempts": 0
+                            },
+                            "StatusCode": 200,
+                            "ExecutedVersion": "$LATEST",
+                            "Payload": {
+                                "uploadTime": 0.175,
+                                "downloadTime": 0.081
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "repetitions_of_experiment": 1,
+    "repetitions_per_function": 2,
+    "concurrency": 1
+}
