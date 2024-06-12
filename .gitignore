@@ -2,6 +2,7 @@ venv/
 bandwidth_results/
 test_files/
 terraform/
+.vscode/
 .idea/
 Baas/aws_lambda_power_tuning
 

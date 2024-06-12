@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;{{/gcp}}
 
-public class AWSRequestHandler implements {{#aws}}RequestHandler<{{{input_type}}}, {{{output_type}}}>{{/aws}}{{#gcp}}{{#aws}}, {{/aws}}{{/gcp}}{{#gcp}}HttpFunction{{/gcp}} {
+public class TestOpsRequestHandler implements {{#aws}}RequestHandler<{{{input_type}}}, {{{output_type}}}>{{/aws}}{{#gcp}}{{#aws}}, {{/aws}}{{/gcp}}{{#gcp}}HttpFunction{{/gcp}} {
     {{#aws}}
     @Override
     public {{{output_type}}} handleRequest({{{input_type}}} input, Context context) {

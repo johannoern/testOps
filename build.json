@@ -1,0 +1,9 @@
+{
+    "project_path": "e",
+    "main_class": "e",
+    "function_name": "e",
+    "provider": [
+        "aws",
+        "gcp"
+    ]
+}

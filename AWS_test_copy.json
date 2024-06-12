@@ -1,0 +1,18 @@
+{
+    "provider": [
+        "aws",
+        "gcp"
+    ],
+    "payload": [
+        {}
+    ],
+    "function_name": "main",
+    "project_path": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos",
+    "main_class": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/src/main/java/org/example/AWSFunction.java",
+    "aws_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/eldgos-1.0-SNAPSHOT.jar",
+    "gcp_code": "C:/Users/Johann/Documents/uibk/BachelorArbeit/eldgos/build/libs/output2024-03-23_10-48-48.zip",
+    "aws_handler": "org.exampleTestOpsRequestHandler",
+    "gcp_handler": "org.exampleTestOpsRequestHandler",
+    "aws_function_name": "handleRequest",
+    "gcp_function_name": "service"
+}

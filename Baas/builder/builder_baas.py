@@ -86,10 +86,10 @@ def implement_handler(main_class, function_name, builders: list[builder_baas_int
     
     handler_content = pystache.render(template, context)
 
-    aws_handler = os.path.join(main_folder, "AWSRequestHandler.java")
+    aws_handler = os.path.join(main_folder, "TestOpsRequestHandler.java")
     with open(aws_handler, "w") as handler:
         handler.write(handler_content)
-    aws_handler = package + ".AWSRequestHandler"
+    aws_handler = package + "TestOpsRequestHandler"
     return aws_handler, aws_function_name, gcp_function_name
 
 def add_dependency(project_path, dependency_string):

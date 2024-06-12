@@ -213,12 +213,10 @@ if baas_deploy:
     with open(json_candidate, "w") as json_file:
         json.dump(deployment_dict, json_file, indent=4)
 
-#NOTE uses pystorage which could not be found and is an additional burden on the dev - could be deleted as BaasDeploy can be used.
 if deploy:
     create_credentials()
     deployer_return = deployer_v2.deploy_function(deployment_dict, deploy_no_op=deploy_noop)
 
-#NOTE deployer_return will never be populated
 if invoke:
     # populate_defaults("invoke_default.json", deployment_dict)
     create_credentials()
